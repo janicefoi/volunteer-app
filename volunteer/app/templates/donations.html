@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/donations.css' %}">
+    <title>Donate Now</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the donation page</h1>
+        <p>Hopefully it is blessed.</p>
+        <form>
+            <label for="donationType">Choose a donation type:</label>
+            <input type="radio" id="childrenHome" name="donationType" value="Children's Home">
+            <label for="childrenHome">Children's Home</label>
+            <label for="donationAmount">Choose a donation amount:</label>
+            <input type="radio" id="amount1000" name="donationAmount" value="1000">
+            <label for="amount1000">Ksh. 1,000</label>
+            <input type="radio" id="amount5000" name="donationAmount" value="5000">
+            <label for="amount5000">Ksh. 5,000</label>
+            <input type="radio" id="amount10000" name="donationAmount" value="10000">
+            <label for="amount10000">Ksh. 10,000</label>
+
+            <input type="text" id="customAmount" placeholder="Enter custom amount">
+
+            <label for="donationFrequency">Choose a donation frequency:</label>
+            <input type="radio" id="monthly" name="donationFrequency" value="Monthly">
+            <label for="monthly">Monthly</label>
+            <input type="radio" id="oneTime" name="donationFrequency" value="One-time">
+            <label for="oneTime">One-time</label>
+
+            <button type="submit">Go to checkout</button>
+        </form>
+    </div>
+</body>
+</html>

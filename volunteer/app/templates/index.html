@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Sign Up</title>
+    <link rel="icon" href="logo.png" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Let's Help you Volunteer<br> and Make a Change!</h1>
+            <a href="home.html"><button class="learn-more">Learn More</button></a>
+            <div class="footer">
+                <a href="#">Terms of Use</a>
+                <a href="#">Privacy</a>
+                <a href="#">Help</a>
+                <a href="#">Cookie preferences</a>
+            </div>
+        </div>
+        <div class="right-panel">
+            
+            <form class="signup-form">
+                <h2>Sign Up to Start your journey today</h2>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="CHOOSE A USERNAME" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="CHOOSE A PASSWORD" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="REPEAT YOUR PASSWORD" required>
+                </div>
+                <button type="submit" class="sign-up">Sign Up</button>
+            </form>
+            <a href="sign-in.html" class="sign-in">Already have an Account?</a>
+        </div>
+    </div>
+    <script>
+        const signupForm = document.getElementById('signup-form');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+
+        signupForm.addEventListener('submit', (event) => {
+            event.preventDefault(); 
+
+            const password = document.getElementById('password').value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match. Please try again.');
+                confirmPasswordInput.value = ''; 
+            } else {
+                alert('Sign up successful!');
+                signupForm.reset(); 
+            }
+        });
+    </script>
+</body>
+</html>

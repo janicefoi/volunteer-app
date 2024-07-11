@@ -1,0 +1,159 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    height: 81.4%;
+    background-color: #265247;
+    padding: 60px 40px;
+}
+
+.left-panel {
+    flex: 1;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('image.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.right-panel {
+    flex: 1;
+    padding: 30px;
+    background-color: white;
+    margin-bottom: 4px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-top: 15rem;
+    margin-bottom: 1px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.learn-more {
+    background-color: #65C5AD;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    max-width: 200px;
+    border-radius: 10rem;
+    margin-bottom: 4rem;
+    font-size: 1.1em;
+}
+
+.footer {
+    font-size: 0.8em;
+}
+
+.footer a {
+    color: white;
+    margin-right: 10px;
+}
+
+.signup-form {
+    margin-top: 70px;
+}
+
+input {
+    width: 80%;
+    padding: 13px;
+    margin: 13px 0;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    border-radius: 5rem;
+}
+
+i {
+    margin-left: 3rem;
+}
+
+.sign-up {
+    background-color: #65C5AD;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 10rem;
+    margin-left: 13rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    font-size: 1.1em;
+}
+
+.sign-in {
+    color: black;
+    font-size: 1.0em;
+    text-align: center;
+    margin-left: 13rem;
+}
+
+.sign-in:hover {
+    color: #65C5AD;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-panel, .right-panel {
+        flex: none;
+        width: 100%;
+    }
+
+    .left-panel {
+        height: 40vh;
+        justify-content: flex-start;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .footer {
+        display: none; /* Hide footer on small screens */
+    }
+
+    .right-panel {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    .learn-more {
+        padding: 8px 16px;
+    }
+}
