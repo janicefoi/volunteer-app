@@ -6,31 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volunteer Web App</title>
-    <link rel="icon" href="img/logo.png" type="image/icon type">
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/icon type">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
 
     <section id="header">
-        <a href="home.html"><img src="img/logo-h.png" class="logo" alt=""></a>
-    <div>
-        <ul id="navbar">
-            <li><a class="active" href="home.html">Home</a> </li>
-            <li><a href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
-            <li><a href="{% url 'events' %}">Events</a></li>
-            <li><a href="{% url 'donations' %}">Donate</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </div>
+        <a href="home.html"><img src="{% static 'img/logo-h.png' %}" class="logo" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li><a class="active" href="home.html">Home</a></li>
+                <li><a href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
+                <li><a href="{% url 'events' %}">Events</a></li>
+                <li><a href="{% url 'donations' %}">Donate</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </div>
     </section>
 
     <section id="tagline">
         <h4>Discover</h4>
         <h1>Find Opportunities to 
         <br>Volunteer and Give Back</h1>            
-        <p>Discover local volunteer opportunities that align with your passions and make a <br>
-            tangible impact in your community. With our user-friendly platform, you can easily</br>
+        <p>Discover local volunteer opportunities that align with your passions and make a 
+            tangible impact in your community. With our user-friendly platform, you can easily
             search, browse, and filter through a wide range of volunteer roles and causes.</p>
         <a href="opportunity-volunteer.html"><button class="learn-more">Learn More</button></a>
     </section>
@@ -43,17 +43,17 @@
     
     <section id="feature" class="section-p1">
         <div class="fe-box">
-            <img src="img/ch.jpeg" alt="Delivery">
-            <h6>Cildren's Homes</h6>
+            <img src="{% static 'img/ch.jpeg' %}" alt="Delivery">
+            <h6>Children's Homes</h6>
         </div>
 
         <div class="fe-box">
-            <img src="img/hv.png" alt="Delivery">
+            <img src="{% static 'img/hv.png' %}" alt="Delivery">
             <h6>Hospitals & Clinics</h6>
         </div>
 
         <div class="fe-box">
-            <img src="img/eh.jpg" alt="Delivery">
+            <img src="{% static 'img/eh.jpg' %}" alt="Delivery">
             <h6>Elderly Homes</h6>
         </div>   
     </section>
@@ -68,7 +68,7 @@
         <div class="pro-container">
             <div class="pro">
                 <h4>Planting Trees<br> Day</h4>
-                <img src="img/pt.jpg" alt="">
+                <img src="{% static 'img/pt.jpg' %}" alt="">
                 <div class="desc">
                     <h5>Location: Nairobi, Karura Forest</h5>
                     <h5>Date: 20/8/2024</h5>
@@ -81,12 +81,11 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                
             </div>
 
             <div class="pro">
-                <h4>Childrens Clothes Donation</h4>
-                <img src="img/cc.jpg" alt="">
+                <h4>Children's Clothes Donation</h4>
+                <img src="{% static 'img/cc.jpg' %}" alt="">
                 <div class="desc">
                     <h5>Location: Nairobi, Zimmerman</h5>
                     <h5>Date: 14/9/2024</h5>
@@ -102,7 +101,7 @@
 
             <div class="pro">
                 <h4>USIU Frieda Brown's <br>Day</h4>
-                <img src="img/fb.jpg" alt="">
+                <img src="{% static 'img/fb.jpg' %}" alt="">
                 <div class="desc">
                     <h5>Location: Nairobi, Roysambu, USIU</h5>
                     <h5>Date: 02/9/2024</h5>
@@ -115,53 +114,52 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-            </div>
-                       
+            </div>            
         </div>
     </section>
     <a href="opportunity-volunteer.html"><button class="volunteer-now">More Events</button></a>
 
     <section id="product1" class="section-p1">
-        
-            <div class="tracking-card">
-                <h2>Tracking Hours</h2>
-                <div class="clock-bg"></div>
-                <div class="details-container">
-                    <div class="details-box">
-                        <h3>Volunteering Details</h3>
-                        <p>Place: Nairobi, Utali Africa</p>
-                        <p>Event: USIU Frieda Brown Day</p>
-                        <p>Hours: 4 Hours</p>
-                    </div>
-                    <div class="details-box">
-                        <h3>Volunteering Details</h3>
-                        <p>Place: Nairobi Hospital</p>
-                        <p>Event: Cleaning and caring for the elderly</p>
-                        <p>Hours: 15 Hours</p>
-                    </div>
+        <div class="tracking-card">
+            <h2>Tracking Hours</h2>
+            <div class="clock-bg"></div>
+            <div class="details-container">
+                <div class="details-box">
+                    <h3>Volunteering Details</h3>
+                    <p>Place: Nairobi, Utali Africa</p>
+                    <p>Event: USIU Frieda Brown Day</p>
+                    <p>Hours: 4 Hours</p>
                 </div>
-                <button class="update-btn">Update (Admin)</button>
+                <div class="details-box">
+                    <h3>Volunteering Details</h3>
+                    <p>Place: Nairobi Hospital</p>
+                    <p>Event: Cleaning and caring for the elderly</p>
+                    <p>Hours: 15 Hours</p>
+                </div>
             </div>
+            <button class="update-btn">Update (Admin)</button>
+        </div>
     
-            <div class="contact-section">
-                <h2>Get in Touch</h2>
-                <p>We'd love to hear from you. Fill out the form below or reach out to us through social media.</p>
-                <div class="contact-info">
-                    <div>
-                        <h3>Email</h3>
-                        <p>info@example.com</p>
-                    </div>
-                    <div>
-                        <h3>Phone</h3>
-                        <p>+1-555-555-5555</p>
-                    </div>
-                    <div>
-                        <h3>Office</h3>
-                        <p>123 Sample St, Sydney, NSW 2000 AU</p>
-                    </div>
+        <div class="contact-section">
+            <h2>Get in Touch</h2>
+            <p>We'd love to hear from you. Fill out the form below or reach out to us through social media.</p>
+            <div class="contact-info">
+                <div>
+                    <h3>Email</h3>
+                    <p>info@example.com</p>
+                </div>
+                <div>
+                    <h3>Phone</h3>
+                    <p>+1-555-555-5555</p>
+                </div>
+                <div>
+                    <h3>Office</h3>
+                    <p>123 Sample St, Sydney, NSW 2000 AU</p>
+                </div>
+            </div>
         </div>
     </section>
     
-    <script src="script.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

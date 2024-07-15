@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ organization_type }} - Volunteer Web App</title>
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+
+    <section id="header">
+        <a href="{% url 'home' %}"><img src="{% static 'img/logo-h.png' %}" class="logo" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a class="active" href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
+                <li><a href="{% url 'events' %}">Events</a></li>
+                <li><a href="{% url 'donations' %}">Donate</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="banner" class="section-m1">
+        <div class="banner-content">
+            <h4 style="color: black; background-color: rgb(253, 245, 245); height: 45px; text-align: center; width: 1200px">
+                {{ organization_type }}
+            </h4>
+        </div>
+    </section>
+    
+    <section id="organizations" class="section-p1">
+        <div class="pro-container">
+            {% for organization in organizations %}
+            <div class="pro">
+                <img src="{{ organization.image.url }}" alt="{{ organization.name }}">
+                <div class="desc">
+                    <h5>{{ organization.name }}</h5>
+                    <p>Location: {{ organization.location }}</p>
+                    <p>{{ organization.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="footer">
+        <div>
+            <ul id="navbar">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </ul>
+        </div>
+    </section>
+    
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

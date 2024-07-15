@@ -1,38 +1,108 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/donations.css' %}">
-    <title>Donate Now</title>
+    <title>Donation Page</title>
+    <link rel="stylesheet" href="donations.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to the donation page</h1>
-        <p>Hopefully it is blessed.</p>
-        <form>
-            <label for="donationType">Choose a donation type:</label>
-            <input type="radio" id="childrenHome" name="donationType" value="Children's Home">
-            <label for="childrenHome">Children's Home</label>
-            <label for="donationAmount">Choose a donation amount:</label>
-            <input type="radio" id="amount1000" name="donationAmount" value="1000">
-            <label for="amount1000">Ksh. 1,000</label>
-            <input type="radio" id="amount5000" name="donationAmount" value="5000">
-            <label for="amount5000">Ksh. 5,000</label>
-            <input type="radio" id="amount10000" name="donationAmount" value="10000">
-            <label for="amount10000">Ksh. 10,000</label>
-
-            <input type="text" id="customAmount" placeholder="Enter custom amount">
-
-            <label for="donationFrequency">Choose a donation frequency:</label>
-            <input type="radio" id="monthly" name="donationFrequency" value="Monthly">
-            <label for="monthly">Monthly</label>
-            <input type="radio" id="oneTime" name="donationFrequency" value="One-time">
-            <label for="oneTime">One-time</label>
-
-            <button type="submit">Go to checkout</button>
-        </form>
+    <section id="header">
+        <a href="home.html"><img src="img/logo-h.png" class="logo" alt=""></a>
+    <div>
+        <ul id="navbar">
+            <li><a class="active" href="home.html">Home</a> </li>
+            <li><a href="opportunity-volunteer.html">Find Organizations</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="donations.html">Donate</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </div>
+    </section>
+
+    <main>
+        <div class="donation-container">
+            <img src="image.png" alt="Happy children" class="children-image">
+            <div class="donation-form">
+                <p>Welcome to the donation page, please fill out the form below. Hopefully it is blessed.</p>
+                
+                <label for="donation-type">Choose a donation type</label>
+                <select id="donation-type">
+                    <option>Children's Home</option>
+                </select>
+
+                <p>Choose a donation amount</p>
+                <div class="donation-amounts">
+                    <label><input type="radio" name="amount" value="1000" checked> Ksh. 1000</label>
+                    <label><input type="radio" name="amount" value="5000"> Ksh. 5000</label>
+                    <label><input type="radio" name="amount" value="10000"> Ksh. 10,000</label>
+                    <label>
+                        <input type="radio" name="amount" value="custom"> 
+                        Enter a custom donation amount
+                        <input type="number" id="custom-amount" placeholder="Enter amount" disabled>
+                    </label>
+                </div>
+
+                <p>Choose a donation frequency</p>
+                <div class="donation-frequency">
+                    <label><input type="radio" name="frequency" value="monthly" checked> Monthly</label>
+                    <label><input type="radio" name="frequency" value="one-time"> One time</label>
+                </div>
+
+                <div class="buttons">
+                    <button class="cancel" id="cancelBtn">Cancel</button>
+                    <button class="checkout" id="checkoutBtn">Go to checkout</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const amountInputs = document.querySelectorAll('input[name="amount"]');
+            const customAmountInput = document.getElementById('custom-amount');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+
+            // Enable/disable custom amount input
+            amountInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.value === 'custom') {
+                        customAmountInput.disabled = false;
+                        customAmountInput.focus();
+                    } else {
+                        customAmountInput.disabled = true;
+                        customAmountInput.value = '';
+                    }
+                });
+            });
+
+            // Cancel button functionality
+            cancelBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to cancel your donation?')) {
+                    // Reset form or redirect to home page
+                    alert('Donation cancelled');
+                    // You could add: window.location.href = 'home.html';
+                }
+            });
+
+            // Checkout button functionality
+            checkoutBtn.addEventListener('click', function() {
+                let selectedAmount = document.querySelector('input[name="amount"]:checked').value;
+                if (selectedAmount === 'custom') {
+                    selectedAmount = customAmountInput.value;
+                }
+                const frequency = document.querySelector('input[name="frequency"]:checked').value;
+                const donationType = document.getElementById('donation-type').value;
+
+                if (selectedAmount && frequency) {
+                    alert(`Thank you for your ${frequency} donation of Ksh. ${selectedAmount} to ${donationType}!`);
+                    // Here you would typically send this data to a server or payment processor
+                } else {
+                    alert('Please select a donation amount and frequency.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

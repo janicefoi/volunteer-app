@@ -24,32 +24,38 @@
         </ul>
     </div>
     </section>
-
+    
     <section id="banner" class="section-m1">
         <div class="banner-content">
-            <h4 style="color: black; background-color: rgb(253, 245, 245); 
-            height: 45px; text-align: center; width: 1200px">
-                Find Volunteer Opportunities Near You</h4>
+            <h4 style="color: black; background-color: rgb(253, 245, 245); height: 45px; text-align: center; width: 1200px">
+                Find Volunteer Opportunities Near You
+            </h4>
         </div>
     </section>
     
     <section id="feature" class="section-p1">
         <div class="fe-box">
-            <img src="img/ch.jpeg" alt="Delivery">
-            <h6>Cildren's Homes</h6>
+            <a href="{% url 'organization_type' organization_type='Children Homes' %}">
+                <img src="{% static 'img/ch.jpeg' %}" alt="Children Homes">
+                <h6>Children Homes</h6>
+            </a>
         </div>
 
         <div class="fe-box">
-            <img src="img/hv.png" alt="Delivery">
-            <h6>Hospitals & Clinics</h6>
+            <a href="{% url 'organization_type' organization_type='Hospitals & Clinics' %}">
+                <img src="{% static 'img/hv.png' %}" alt="Hospitals & Clinics">
+                <h6>Hospitals & Clinics</h6>
+            </a>
         </div>
 
         <div class="fe-box">
-            <img src="img/eh.jpg" alt="Delivery">
-            <h6>Elderly Homes</h6>
+            <a href="{% url 'organization_type' organization_type='Elderly Homes' %}">
+                <img src="{% static 'img/eh.jpg' %}" alt="Elderly Homes">
+                <h6>Elderly Homes</h6>
+            </a>
         </div>   
     </section>
-    <a href="opportunity-volunteer.html"><button class="volunteer-now">Volunteer Now!</button></a>
+    <a href="{% url 'volunteerform' %}"><button class="volunteer-now">Volunteer Now!</button></a>
 
     <section id="product1" class="section-p1">
         <section id="banner" class="section-m1">

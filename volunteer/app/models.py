@@ -18,13 +18,17 @@ class User(AbstractUser):
         verbose_name='user permissions',
     )
 
-
-
 class Organization(models.Model):
+    ORGANIZATION_TYPES = [
+        ('Elderly Homes', 'Elderly Homes'),
+        ('Hospitals & Clinics', 'Hospitals & Clinics'),
+        ('Children Homes', 'Children Homes'),
+    ]
     name = models.CharField(max_length=100)
     description = models.TextField()
     location = models.CharField(max_length=100)
     image = models.ImageField(upload_to='organization_images/')
+    type = models.CharField(max_length=25, choices=ORGANIZATION_TYPES)
 
     def __str__(self):
         return self.name

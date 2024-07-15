@@ -1,40 +1,122 @@
 
+
 body {
-    font-family: Arial, sans-serif;
-    background-image: url('background-image.jpg'); /* Replace with your actual image */
-    background-size: cover;
-    background-position: center;
-    color: white;
+    font-family: "Spartan", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
 }
-.container {
-    max-width: 600px;
-    margin: 0 auto;
+
+/* .logo {
+    width: 50px;
+    height: 50px;
+} */
+
+main {
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
 }
-h1 {
-    text-align: center;
-}
-form {
+
+.donation-container {
     display: flex;
-    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
 }
-label {
-    margin-bottom: 10px;
+
+.children-image {
+    width: 50%;
+    object-fit: cover;
 }
-input[type="radio"] {
-    margin-right: 5px;
+
+.donation-form {
+    padding: 20px;
+    width: 50%;
 }
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
+
+select, .donation-amounts, .donation-frequency {
     margin-bottom: 20px;
 }
+
+select {
+    width: 100%;
+    padding: 5px;
+}
+
+.donation-amounts label, .donation-frequency label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
 button {
-    background-color: #007bff;
-    color: white;
-    border: none;
     padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
     cursor: pointer;
+}
+
+.cancel {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+.checkout {
+    background-color: #2f4f4f;
+    color: white;
+}
+
+#header{
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding: 20px 80px;
+    background-color: #265247;
+    box-shadow: 0 5px 15px rgb(0, 0, 0, 0.06);
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+#navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#navbar li{
+    list-style: none;
+    margin-top: 20px;
+    padding: 0 20px;
+    position: relative;
+}
+
+#navbar li a{
+  text-decoration: none;
+  font-size:  16px;
+  font-weight: 600;
+  color: white;
+  transition: 0.3s ease;
+}
+
+#navbar li a:hover,
+#navbar li a.active{
+  color: #64d6ba;
+}
+
+#navbar li a.active::after,
+#navbar li a:hover::after{
+  content: "";
+  width: 30%;
+  height: 2px;
+  background-color: #64d6ba;
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
 }

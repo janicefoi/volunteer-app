@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Web App</title>
+    <link rel="icon" href="img/logo.png" type="image/icon type">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/volunteerform.css' %}">
+</head>
+</head>
+<body>
+    <section id="background">
+    <section id="header">
+        <a href="home.html"><img src="img/logo-h.png" class="logo" alt=""></a>
+    <div>
+        <ul id="navbar">
+            <li><a class="active" href="home.html">Home</a> </li>
+            <li><a href="opportunity-volunteer.html">Find Organizations</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="donations.html">Donate</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+    </section>
+
+    
+    <form id="volunteerForm">
+        <h1>Volunteer Sign Up Form</h1>
+        <p style="text-align: center;">You will be contacted when we receive your application.<br>
+            Your placement and work time will be confirmed 15 days prior volunteer start date.</p>
+        <div class="form-group">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+        </div>
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+        </div>
+        <!-- <div class="form-group">
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required>
+        </div> -->
+        <!-- <div class="form-group">
+            <label for="zip">Postal Zip Code:</label>
+            <input type="text" id="zip" name="zip" required>
+        </div> -->
+        <div class="form-group">
+            <label for="age">Are you over 18?</label>
+            <select id="age" name="age" required>
+                <option value="">Select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="organization">Company/School/Organization:</label>
+            <input type="text" id="organization" name="organization">
+        </div>
+        <div class="form-group">
+            <label for="members">How many members are in your group?</label>
+            <input type="number" id="members" name="members">
+        </div>
+        <div class="form-group">
+            <label for="photo">Do you have a photo of the group?</label>
+            <select id="photo" name="photo">
+                <option value="">Select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+
+        <div class="form-group" id="photoUploadGroup" style="display: none;">
+            <label for="photoUpload">Upload Group Photo:</label>
+            <input type="file" id="photoUpload" name="photoUpload" accept="image/*">
+        </div>
+
+        <div class="form-group">
+            <label>Preferred Area to Volunteer:</label>
+            <select name="preferredArea" required>
+                <option value="">Select Place</option>
+                <option value="optionA">Mama Fatuma</option>
+                <option value="optionB">School of Autistic</option>
+                <option value="optionC">Nairobi Hospital</option>
+                <option value="optionD">Care for the Elderly</option>
+                <option value="optionE">Pet for pet</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="skillset">What kind of skill set are you volunteering?</label>
+            <textarea id="skillset" name="skillset" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="specialNeeds">Any special needs you want us to know:</label>
+            <textarea id="specialNeeds" name="specialNeeds" rows="4"></textarea>
+        </div>
+        <input type="submit" value="Submit Form">
+    </form>
+</section>
+    <script src="volunteer-form.js"></script>
+</body>
+</html>
