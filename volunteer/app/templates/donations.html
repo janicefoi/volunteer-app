@@ -1,21 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donation Page</title>
-    <link rel="stylesheet" href="donations.css">
+    <link rel="stylesheet" href="{% static 'css/donations.css' %}">
 </head>
 <body>
     <section id="header">
         <a href="home.html"><img src="img/logo-h.png" class="logo" alt=""></a>
     <div>
         <ul id="navbar">
-            <li><a class="active" href="home.html">Home</a> </li>
-            <li><a href="opportunity-volunteer.html">Find Organizations</a></li>
-            <li><a href="events.html">Events</a></li>
-            <li><a href="donations.html">Donate</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href=" {% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
+            <li><a href="{% url 'events' %}">Events</a></li>
+            <li><a class="active" href="{% url 'donations' %}">Donate</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
     </div>
     </section>

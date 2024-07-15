@@ -16,7 +16,7 @@
         <a href="home.html"><img src="{% static 'img/logo-h.png' %}" class="logo" alt=""></a>
         <div>
             <ul id="navbar">
-                <li><a class="active" href="home.html">Home</a></li>
+                <li><a class="active" href=" {% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
                 <li><a href="{% url 'events' %}">Events</a></li>
                 <li><a href="{% url 'donations' %}">Donate</a></li>

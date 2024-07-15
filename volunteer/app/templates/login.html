@@ -1,10 +1,11 @@
+<!-- login.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volunteer Sign Up</title>
+    <title>Volunteer Sign In</title>
     <link rel="icon" href="logo.png" type="image/icon type">
     <link rel="stylesheet" href="{% static 'css/sign-in.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,19 +24,20 @@
         </div>
         <div class="right-panel">
             
-            <form class="signin-form">
+            <form class="signin-form" method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
                 <h2>Sign In and continue your journey today</h2>
                 <div class="input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="ENTER USERNAME" required>
+                    <input type="text" name="username" placeholder="ENTER USERNAME" required>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="ENTER PASSWORD" required>
+                    <input type="password" name="password" placeholder="ENTER PASSWORD" required>
                 </div>
                 <button type="submit" class="sign-in">Sign In</button>
             </form>
-            <a href="index.html" class="index">I don't have an Account?</a>
+            <a href="{% url 'register' %}" class="index">I don't have an Account?</a>
         </div>
     </div>
     <script src="sign-in.js"></script>
