@@ -3,31 +3,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volunteer Web App</title>
-    <link rel="icon" href="img/logo.png" type="image/icon type">
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/icon type">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
 
     <section id="header">
-        <a href="home.html"><img src="img/logo-h.png" class="logo" alt=""></a>
-    <div>
-        <ul id="navbar">
-            <li><a href=" {% url 'home' %}">Home</a></li>
-            <li><a class="active" href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
-            <li><a href="{% url 'events' %}">Events</a></li>
-            <li><a href="{% url 'donations' %}">Donate</a></li>
-            <li><a href="{% url 'contact' %}">Contact</a></li>
-        </ul>
-    </div>
+        <a href="{% url 'home' %}"><img src="{% static 'img/logo-h.png' %}" class="logo" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a class="active" href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
+                <li><a href="{% url 'events' %}">Events</a></li>
+                <li><a href="{% url 'donations' %}">Donate</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </div>
     </section>
     
     <section id="banner" class="section-m1">
         <div class="banner-content">
-            <h4 style="color: black; background-color: rgb(253, 245, 245); height: 45px; text-align: center; width: 1200px">
+            <h4 style="color: black; background-color: rgb(253, 245, 245); height: 45px; text-align: center; width: 100%;">
                 Find Volunteer Opportunities Near You
             </h4>
         </div>
@@ -55,155 +54,97 @@
             </a>
         </div>   
     </section>
-    <a href="{% url 'volunteerform' %}"><button class="volunteer-now">Volunteer Now!</button></a>
+    <div class="button-container">
+        <a href="{% url 'volunteerform' %}"><button class="volunteer-now">Volunteer Now!</button></a>
+    </div>
 
     <section id="product1" class="section-p1">
-        <section id="banner" class="section-m1">
-            <div class="banner-content">
-                <h4>Childrens Homes</h4>
-            </div>
-        </section>
-        <div class="pro-container">
-            <div class="pro">
-                <h4>Mama Fatuma<br> Orphange</h4>
-                <img src="img/mf.jpg" alt="">
-                <div class="desc">
-                    <h5>Location: Nairobi, Eastleigh</h5>
-                    <h5>Desc: Educating young boys and girls who are orphans</h5>
-                    <h5>Time: 10:00 AM</h5>
-                </div>
-                
-            </div>
-
-            <div class="pro">
-                <h4>School of<br> Autistic</h4>
-                <img src="img/sa.jpg" alt="">
-                <div class="desc">
-                    <h5>Location: Nairobi, Zimmerman</h5>
-                    <h5>Desc: Help Autistic children
-                        get an education</h5>
-                    <h5>Time: 7:00 to 11:00 AM</h5>
-                </div>
-            </div>
-
-            <div class="pro">
-                <h4>Food for the <br>Children</h4>
-                <img src="img/fc.jpg" alt="">
-                <div class="desc">
-                    <h5>Location: Nairobi</h5>
-                    <h5>Desc: We donate food to 
-                        children homes  in Nairobi</h5>
-                    <h5>Time: 10:00 AM</h5>
-                </div>
-            </div>
-                       
+        <div class="section-title">
+            <h4>Children Homes</h4>
         </div>
-    </section><a href="opportunity-volunteer.html"><button class="volunteer-now" style="margin-left: 48%;">More Childrens' Homes</button></a>
-    
+        <div class="pro-container">
+            <!-- Dynamic content for Children Homes -->
+            {% for organization in childrenhomes %}
+            <div class="pro">
+                <h4>{{ organization.name }}</h4>
+                <img src="{{ organization.image.url }}" alt="{{ organization.name }}">
+                <div class="desc">
+                    <h5>Location: {{ organization.location }}</h5>
+                    <h5>Desc: {{ organization.description }}</h5>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="button-container">
+            <a href="{% url 'organization_type' organization_type='Children Homes' %}" class="volunteer-now">More Children's Homes</a>
+        </div>
+    </section>
 
-    <a href="{% url 'volunteerform' %}"><button class="volunteer-now" style="margin-top: 1rem;">Volunteer Now!</button></a>
+    <div class="button-container">
+        <a href="{% url 'volunteerform' %}"><button class="volunteer-now" style="margin-top: 1rem;">Volunteer Now!</button></a>
+    </div>
 
     <section id="product1" class="section-p1">
-        <section id="banner" class="section-m1">
-            <div class="banner-content">
-                <h4>Hospitals and Clinics</h4>
-            </div>
-        </section>
-        <div class="pro-container">
-            <div class="pro">
-                <h4>Nairobi<br> Hospital</h4>
-                <img src="img/nh.png" alt="">
-                <div class="desc">
-                    <h5>Location: Upper Hill area, Nairobi, Kenya.</h5>
-                    <h5>Desc: Private Hospital</h5>
-                    <h5>Open: 8:00 to 5:00 pm</h5>
-                </div>
-                
-            </div>
-
-            <div class="pro">
-                <h4>Pet for <br> Pet</h4>
-                <img src="img\ep.avif" alt="">
-                <div class="desc">
-                    <h5>Location: Nairobi, Zimmerman</h5>
-                    <h5>Desc: Exchanging pets with
-                        other pet owners</h5>
-                    <h5>Time: 7:00 to 11:00 AM</h5>
-                </div>
-            </div>
-
-            <div class="pro">
-                <h4>Animal <br>Clinics</h4>
-                <img src="img/ac.jpg" alt="">
-                <div class="desc">
-                    <h5>Location: Nairobi</h5>
-                    <h5>Desc: State of the art veterinary hospital.</h5>
-                    <h5>Open: Monday - Friday: 9.00 - 16.00</h5>
-                </div>
-            </div>
-                       
+        <div class="section-title">
+            <h4>Hospitals and Clinics</h4>
         </div>
-    </section><a href="opportunity-volunteer.html"><button class="volunteer-now" style="margin-left: 48%;">More Health Facilities</button></a>
-    
+        <div class="pro-container">
+            <!-- Dynamic content for Hospitals and Clinics -->
+            {% for organization in hospitals %}
+            <div class="pro">
+                <h4>{{ organization.name }}</h4>
+                <img src="{{ organization.image.url }}" alt="{{ organization.name }}">
+                <div class="desc">
+                    <h5>Location: {{ organization.location }}</h5>
+                    <h5>Desc: {{ organization.description }}</h5>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="button-container">
+            <a href="{% url 'organization_type' organization_type='Hospitals & Clinics' %}" class="volunteer-now">More Health Facilities</a>
+        </div>
+    </section>
 
-    <a href="{% url 'volunteerform' %}"><button class="volunteer-now" style="margin-top: 1rem;">Volunteer Now!</button></a>
+    <div class="button-container">
+        <a href="{% url 'volunteerform' %}"><button class="volunteer-now" style="margin-top: 1rem;">Volunteer Now!</button></a>
+    </div>
 
     <section id="product1" class="section-p1">
-        <section id="banner" class="section-m1">
-            <div class="banner-content">
-                <h4>Elderly Homes</h4>
-            </div>
-        </section>
-        <div class="pro-container">
-            <div class="pro">
-                <h4>Care for the<br> Elderly</h4>
-                <img src="img/ce.jpg" alt="">
-                <div class="desc">
-                    <h5>Location: Nairobi, Githurai.</h5>
-                    <h5>Desc: Help older people with many aspects of health care</h5>
-                    <h5>Open: 24/7</h5>
-                </div>
-                
-            </div>
-
-            <div class="pro">
-                <h4>Elderly  <br> Sport</h4>
-                <img src="img\es.jpg" alt="">
-                <div class="desc">
-                    <h5>Location: Nairobi, Huruma</h5>
-                    <h5>Desc: Helping Elderly people 
-                        participating in sports</h5>
-                    <h5>Time: 7:00 to 11:00 AM</h5>
-                </div>
-            </div>
-
-            <div class="pro">
-                <h4>Fundraise for Elderly  <br>Care</h4>
-                <img src="img/ac.jpg" alt="">
-                <div class="desc">
-                    <h5>Location: Nairobi</h5>
-                    <h5>Desc: We donate necessities to 
-                        the elderly homes  in Nairobi.</h5>
-                    <h5>Open: 9.00 - 16.00 pm</h5>
-                </div>
-            </div>
-                       
+        <div class="section-title">
+            <h4>Elderly Homes</h4>
         </div>
-    </section><a href="opportunity-volunteer.html"><button class="volunteer-now" style="margin-left: 48%;">More Elderly Homes</button></a>
+        <div class="pro-container">
+            <!-- Dynamic content for Elderly Homes -->
+            {% for organization in elderlyhomes %}
+            <div class="pro">
+                <h4>{{ organization.name }}</h4>
+                <img src="{{ organization.image.url }}" alt="{{ organization.name }}">
+                <div class="desc">
+                    <h5>Location: {{ organization.location }}</h5>
+                    <h5>Desc: {{ organization.description }}</h5>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="button-container">
+            <a href="{% url 'organization_type' organization_type='Elderly Homes' %}" class="volunteer-now">More Elderly Homes</a>
+        </div>
+    </section>
     
-
-    <a href="{% url 'volunteerform' %}"><button class="volunteer-now" style="margin-top: 1rem; margin-bottom: 2rem;">Volunteer Now!</button></a>
-
+    <div class="button-container">
+        <a href="{% url 'volunteerform' %}"><button class="volunteer-now" style="margin-top: 1rem;">Volunteer Now!</button></a>
+    </div>
 
     <section id="header">
-    <div>
-        <ul id="navbar">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        </ul>
-    </div>
+        <div>
+            <ul id="navbar">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </ul>
+        </div>
     </section>
     
     <script src="script.js"></script>

@@ -209,9 +209,14 @@ button.normal{
   padding: 10px 20px;
   border-radius: 50px;
   cursor: pointer;
-  margin-left: 50%;
   background-repeat: no-repeat;
 }
+
+.button-container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
 
 /* #feature .fe-box:nth-child(2) h6   {
   color: yellowgreen;

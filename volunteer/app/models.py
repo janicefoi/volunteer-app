@@ -8,15 +8,18 @@ class User(AbstractUser):
     total_service_hours = models.PositiveIntegerField(default=0)
     events_attended = models.PositiveIntegerField(default=0)
 
-    # Provide related_name for groups and user_permissions
+    # Add related_name for groups and user_permissions
     groups = models.ManyToManyField(
-        'auth.Group', related_name='custom_user_set', blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
+        'auth.Group', related_name='custom_user_set', blank=True,
+        help_text='The groups this user belongs to.',
         verbose_name='groups',
     )
     user_permissions = models.ManyToManyField(
-        'auth.Permission', related_name='custom_user_set', blank=True, help_text='Specific permissions for this user.',
+        'auth.Permission', related_name='custom_user_set', blank=True,
+        help_text='Specific permissions for this user.',
         verbose_name='user permissions',
     )
+
 
 class Organization(models.Model):
     ORGANIZATION_TYPES = [
@@ -39,10 +42,13 @@ class Event(models.Model):
     location = models.CharField(max_length=100)
     date_time = models.DateTimeField()
     image = models.ImageField(upload_to='event_images/')
-    organization = models.ForeignKey(Organization, related_name='events', on_delete=models.CASCADE)
+    organization = models.ForeignKey(Organization, related_name='events', on_delete=models.CASCADE, blank=True, null=True)
+    attendees_count = models.PositiveIntegerField(default=0)  # New field for tracking attendees
 
     def __str__(self):
         return self.name
+
+
 
 class Donation(models.Model):
     DONATION_TYPES = [
@@ -81,8 +87,7 @@ class UserDonation(models.Model):
 class UserEvent(models.Model):
     user = models.ForeignKey(User, related_name='events', on_delete=models.CASCADE)
     event = models.ForeignKey(Event, related_name='user_events', on_delete=models.CASCADE)
-    date = models.DateTimeField(default=timezone.now)
-    hours = models.PositiveIntegerField()
+
 
     def __str__(self):
         return f"{self.user.username} - {self.event.name}"

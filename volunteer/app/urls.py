@@ -13,5 +13,8 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('volunteerform', views.volunteerform, name='volunteerform'),
     path('organization-type/<str:organization_type>/', views.organization_type, name='organization_type'),
+    path('signup/<int:event_id>/', views.signup_for_event, name='signup_for_event'),
+    
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
