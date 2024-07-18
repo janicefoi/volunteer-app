@@ -43,7 +43,7 @@ class Event(models.Model):
     date_time = models.DateTimeField()
     image = models.ImageField(upload_to='event_images/')
     organization = models.ForeignKey(Organization, related_name='events', on_delete=models.CASCADE, blank=True, null=True)
-    attendees_count = models.PositiveIntegerField(default=0)  # New field for tracking attendees
+    attendees_count = models.PositiveIntegerField(default=0)  
 
     def __str__(self):
         return self.name
