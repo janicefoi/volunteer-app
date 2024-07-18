@@ -9,6 +9,92 @@
     <link rel="icon" href="{% static 'img/logo.png' %}" type="image/icon type">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    #navbar li a i {
+  font-size: 1.8em; /* Adjust the size */
+  color: #fff; /* Adjust the color */
+  margin-left: 10px;
+}
+#tagline {
+    display: flex;
+    justify-content: space-between;
+    padding: 70px;
+    background-color: #f0f0f0;
+    width: 80%;
+    margin-left: 100px;
+}
+
+.tagline-content {
+    flex: 1;
+    padding-right: 40px;
+    width: 50%;
+    padding-top: 20px;
+
+}
+
+.tagline-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 50%;
+    margin-top: -250px;
+}
+
+.tagline-image img {
+    max-width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    
+}
+#tagline h4{
+  padding-bottom: 15px;
+  color: #65C5AD;
+  font-size: larger;
+}
+
+#tagline h1{
+  color: #000;
+  padding: 0;
+  font-size: 35px;
+}
+
+#tagline h2{
+  color: #000;
+}
+
+#tagline p{
+  color: #000;
+  font-size: 15px;
+}
+
+#tagline button{
+  font-size: 15px;
+  font-weight: 700;
+  background-color: #65C5AD;
+  color: white;
+  border:10px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  margin-top: 10px;
+}
+.learn-more {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #2f4f4f;
+    color: white;
+    cursor: pointer;
+}
+
+.learn-more:hover {
+    background-color: #64d6ba;
+}
+
+
+</style>
 </head>
 <body>
 
@@ -21,17 +107,23 @@
                 <li><a href="{% url 'events' %}">Events</a></li>
                 <li><a href="{% url 'donations' %}">Donate</a></li>
                 <li><a href="{% url 'contact' %}">Contact</a></li>
-                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> </a></li>
             </ul>
         </div>
     </section>
 
     <section id="tagline">
+        <div class="tagline-content">
         <h4>Discover</h4>
         <h1>Find Opportunities to <br>Volunteer and Give Back</h1>
         <p>Discover local volunteer opportunities that align with your passions and make a tangible impact in your community. With our user-friendly platform, you can easily search, browse, and filter through a wide range of volunteer roles and causes.</p>
         <a href="{% url 'opportunityvolunteer' %}"><button class="learn-more">Learn More</button></a>
+        </div>
+        <div class="tagline-image">
+            <img src="{% static 'img/home.jpg' %}" alt="Volunteer Image">
+        </div>
     </section>
+    
 
     <section id="banner" class="section-m1">
         <div class="banner-content">

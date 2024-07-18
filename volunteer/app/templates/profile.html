@@ -1,3 +1,4 @@
+{% load static %}
 <html>
   <head>
     <meta charset="UTF-8">
@@ -6,7 +7,15 @@
     <title>Volunteer Web App</title>
     <link rel="icon" href="{% static 'img/logo.png' %}" type="image/icon type">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+    <style>
+        #navbar li a i {
+      font-size: 1.8em; /* Adjust the size */
+      color: #fff; /* Adjust the color */
+      margin-left: 10px;
+    }
+    </style>
 </head>
     <body>
         <section id="header">
@@ -18,7 +27,8 @@
                     <li><a href="{% url 'events' %}">Events</a></li>
                     <li><a href="{% url 'donations' %}">Donate</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
-                    <li><a class="active" href="profile.html">Profile</a></li>
+                    <li><a class="active" href="{% url 'profile' %}"><i class="fas fa-user"></i> </a></li>
+
                 </ul>
             </div>
         </section>
@@ -26,7 +36,7 @@
       <h1>Profile</h1>
       
       <div class="profile-section">
-        <img src="climb.png" alt="Chitundu Limbikani" class="profile-image">
+        <img src="{% static 'img/climb.png' %}" alt="Chitundu Limbikani" class="profile-image">
         <div class="profile-info">
           <div class="profile-name">Chitundu Limbikani</div>
           <div class="profile-handle">@Climbikani</div>

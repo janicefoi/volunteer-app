@@ -4,10 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>Contact Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/icon type">
+
 </head>
 <body>
+    <section id="header">
+        <a href="home.html"><img src="img/logo-h.png" class="logo" alt=""></a>
+    <div>
+        <ul id="navbar">
+            <li><a href=" {% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
+            <li><a href="{% url 'events' %}">Events</a></li>
+            <li><a href="{% url 'donations' %}">Donate</a></li>
+            <li><a class="active" href="{% url 'contact' %}">Contact</a></li>
+            <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> </a></li>
+        </ul>
+    </div>
+    </section>
+
     <div class="container">
         <div class="form-section">
             <h1>Contact Us</h1>
