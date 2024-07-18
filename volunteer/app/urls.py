@@ -11,7 +11,6 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('opportunityvolunteer/', views.opportunityvolunteer, name='opportunityvolunteer'),  
     path('donations/', views.donations, name='donations'),
-    path('contact/', views.contact, name='contact'),
     path('volunteerform', views.volunteerform, name='volunteerform'),
     path('organization-type/<str:organization_type>/', views.organization_type, name='organization_type'),
     path('signup/<int:event_id>/', views.signup_for_event, name='signup_for_event'),

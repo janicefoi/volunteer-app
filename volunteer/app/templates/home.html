@@ -93,6 +93,111 @@
     background-color: #64d6ba;
 }
 
+#feature {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding-left: 20%;
+}
+
+#feature .fe-box{
+  width: 300px;
+  text-align: center;
+  padding: 5px 5px;
+  box-shadow: 20px 20px 34px rgba(0,0,0,0.03);
+  border: 1px solid #bbc2c0;
+  border-radius: 5px;
+  margin: 3px 0;
+}
+
+#feature .fe-box:hover{
+  box-shadow: 10px 10px 54px rgb(149, 150, 151);
+  border-radius: 10px;
+}
+
+#feature .fe-box img{
+  width: 100%;
+  height: 80%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+#feature .fe-box h6 {
+  line-height: 1;
+  border-radius: 4px;
+  color:#2f4f4f;
+  display: inline-block;
+}
+.volunteer-now {
+  font-size: 15px;
+  font-weight: 700;
+  background-color: #59aa96;
+  color: white;
+  border-color: #64d6ba;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 1rem;
+  margin-left: 50%;
+}
+.contact-form form{
+    position:relative;
+}
+.contact-form form input,
+form textarea{
+    width: 100%;
+    padding: 14px;
+    background:#2f4f4f17;
+    color: rgb(0, 0, 0);
+    border: none;
+    outline: none;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.contact-form textarea{
+    resize: none;
+    height: 240px;
+}
+.contact-form .submit{
+    display: inline-block;
+    font-size: 16px;
+    background: #20211d;
+    color: rgb(255, 255, 255);
+    width: 160px;
+    transition: all .45s ease;
+}
+.contact-form .submit:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    background: #b13c3c;
+    color:#000000;
+}
+.contact-section{
+    background-color: #ffffff;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 150px;
+    margin-bottom: 50px;
+}
+
+.contact-text h2 {
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.contact-text p {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
 
 </style>
 </head>
@@ -106,7 +211,6 @@
                 <li><a href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
                 <li><a href="{% url 'events' %}">Events</a></li>
                 <li><a href="{% url 'donations' %}">Donate</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
                 <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> </a></li>
             </ul>
         </div>
@@ -134,7 +238,7 @@
     <section id="feature" class="section-p1">
         <div class="fe-box">
             <a href="{% url 'organization_type' organization_type='Children Homes' %}">
-                <img src="{% static 'img/ch.jpeg' %}" alt="Children Homes">
+                <img src="{% static 'img/ch.avif' %}" alt="Children Homes">
                 <h6>Children Homes</h6>
             </a>
         </div>
@@ -240,24 +344,44 @@
             </div>
     
             <div class="contact-section">
-                <h2>Get in Touch</h2>
-                <p>We'd love to hear from you. Fill out the form below or reach out to us through social media.</p>
-                <div class="contact-info">
-                    <div>
-                        <h3>Email</h3>
-                        <p>info@example.com</p>
-                    </div>
-                    <div>
-                        <h3>Phone</h3>
-                        <p>+1-555-555-5555</p>
-                    </div>
-                    <div>
-                        <h3>Office</h3>
-                        <p>123 Sample St, Sydney, NSW 2000 AU</p>
-                    </div>
+                <div class="contact-text">
+                    <h2>Get in Touch</h2>
+                    <p>We'd love to hear from you.<br> Fill out the form below or reach out to us through social media.</p>
+                    <h3>Email</h3>
+                            <p>VolunteerKE@gmail.com</p>
+                        
+                
+                            <h3>Phone</h3>
+                            <p>+254 765 123 890</p>
+                        
+                            <h3>Office</h3>
+                            <p>973 Kimathi Street, Nairobi,Kenya</p>
+                        
+                    
+                </div>
+
+                <div class="contact-form">
+                    <form action="mailto:VolunteerKE@gmail.com" method="get" enctype="text/plain">
+                        <input type="name" placeholder=" Name" required>
+                        <input type="email" placeholder=" Email address" required>
+                        <input type="" placeholder=" Mobile Number" required>
+                        <textarea name="" id="" cols="35" rows="10" placeholder="How Can We Help You" required></textarea>
+                        <button class="volunteer-now" onclick="myFunction()" type="submit" >Submit</button>
+                        <script>
+                            function myFunction() {
+                                alert("You are submitting your form!");
+                        }
+                        </script>      
+                
+                        
+                        <button class="volunteer-now" onclick="myFunction2()" type="reset">Reset</button>
+                        <script>
+                            function myFunction2() {
+                                alert("Reseting the form")
+                            }
+                        </script>
+                    </form>
                 </div>
             </div>
-    
-    <script src="script.js"></script>
 </body>
 </html>

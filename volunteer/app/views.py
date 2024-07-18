@@ -64,8 +64,6 @@ def home(request):
 def donations(request):
     return render(request, 'donations.html')
 
-def contact(request):
-    return render(request, 'contact.html')
 
 def profile(request):
     return render(request, 'profile.html')
