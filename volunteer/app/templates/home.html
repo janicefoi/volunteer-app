@@ -97,27 +97,25 @@
     display: flex;
     align-content: center;
     justify-content: space-between;
-    padding-left: 20%;
+    flex-wrap: wrap;
+    margin-left: 5.5rem;
+    margin-right: 18rem;
+   
 }
 
 #feature .fe-box{
-  width: 300px;
+  width: 350px;
   text-align: center;
-  padding: 5px 5px;
-  box-shadow: 20px 20px 34px rgba(0,0,0,0.03);
-  border: 1px solid #bbc2c0;
-  border-radius: 5px;
-  margin: 3px 0;
+  padding: 1px 1px;
 }
 
 #feature .fe-box:hover{
-  box-shadow: 10px 10px 54px rgb(149, 150, 151);
   border-radius: 10px;
 }
 
 #feature .fe-box img{
-  width: 100%;
-  height: 80%;
+  width: 120%;
+  height: auto;
   margin-bottom: 10px;
   border-radius: 5px;
 }
@@ -135,7 +133,7 @@
   color: white;
   border-color: #64d6ba;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   background-repeat: no-repeat;
 }
@@ -224,7 +222,7 @@ form textarea{
         <a href="{% url 'opportunityvolunteer' %}"><button class="learn-more">Learn More</button></a>
         </div>
         <div class="tagline-image">
-            <img src="{% static 'img/home.jpg' %}" alt="Volunteer Image">
+            <img src="{% static 'img/donate.avif' %}" alt="Volunteer Image">
         </div>
     </section>
     
@@ -245,14 +243,14 @@ form textarea{
 
         <div class="fe-box">
             <a href="{% url 'organization_type' organization_type='Hospitals & Clinics' %}">
-                <img src="{% static 'img/hv.png' %}" alt="Hospitals & Clinics">
+                <img src="{% static 'img/clinic.avif' %}" alt="Hospitals & Clinics">
                 <h6>Hospitals & Clinics</h6>
             </a>
         </div>
 
         <div class="fe-box">
             <a href="{% url 'organization_type' organization_type='Elderly Homes' %}">
-                <img src="{% static 'img/eh.jpg' %}" alt="Elderly Homes">
+                <img src="{% static 'img/eh.avif' %}" alt="Elderly Homes">
                 <h6>Elderly Homes</h6>
             </a>
         </div> 
@@ -286,7 +284,7 @@ form textarea{
 
             <div class="pro">
                 <h4>Children's Clothes Donation</h4>
-                <img src="{% static 'img/cc.jpg' %}" alt="Children's Clothes Donation">
+                <img src="{% static 'img/cd.avif' %}" alt="Children's Clothes Donation">
                 <div class="desc">
                     <h5>Location: Nairobi, Zimmerman</h5>
                     <h5>Date: 14/9/2024</h5>

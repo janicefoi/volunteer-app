@@ -17,6 +17,17 @@
       color: #fff; /* Adjust the color */
       margin-left: 10px;
     }
+    .donation-container {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 1200px;
+    height: 700px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
     </style>
 </head>
 <body>
@@ -36,13 +47,17 @@
 
     <main>
         <div class="donation-container">
-            <img src="{% static 'volunteer/app/static/img/donate.avif' %}">
+            <img src="{% static 'img/don.avif' %}" width="600px" height="auto">
 
             <div class="donation-form">
                 <p>Welcome to the donation page, please fill out the form below. Hopefully it is blessed.</p>
                 
                 <label for="donation-type">Choose a donation type</label>
                 <select id="donation-type">
+                    <option>Children's Home</option>
+                    <option>Children's Home</option>
+                    <option>Children's Home</option>
+                    <option>Children's Home</option>
                     <option>Children's Home</option>
                 </select>
 
@@ -53,8 +68,8 @@
                     <label><input type="radio" name="amount" value="10000"> Ksh. 10,000</label>
                     <label>
                         <input type="radio" name="amount" value="custom"> 
-                        Enter a custom donation amount
-                        <input type="number" id="custom-amount" placeholder="Enter amount" disabled>
+                        Enter a custom donation amount<br>
+                        <input type="number" id="custom-amount" placeholder="Enter amount" >
                     </label>
                 </div>
 
