@@ -11,6 +11,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/events.css' %}">
+    <style>
+        #navbar li a i {
+      font-size: 1.8em; /* Adjust the size */
+      color: #fff; /* Adjust the color */
+      margin-left: 10px;
+    }
+    </style>
 </head>
 <body>
 
@@ -29,7 +36,7 @@
 
     <section id="banner" class="section-m1">
         <div class="banner-content">
-            <h4 style="color: black; background-color: rgb(253, 245, 245); height: 45px; text-align: center; width: 1200px">
+            <h4 >
                 Current Events</h4>
         </div>
     </section>
@@ -74,26 +81,7 @@
             <button id="confirmNo">No</button>
         </div>
     </div>
-    <section id="contact" class="section-p1">
-        <div class="contact-section">
-            <h2>Get in Touch</h2>
-            <p>We'd love to hear from you. Fill out the form below or reach out to us through social media.</p>
-            <div class="contact-info">
-                <div>
-                    <h3>Email</h3>
-                    <p>info@example.com</p>
-                </div>
-                <div>
-                    <h3>Phone</h3>
-                    <p>+1-555-555-5555</p>
-                </div>
-                <div>
-                    <h3>Office</h3>
-                    <p>123 Sample St, Sydney, NSW 2000 AU</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <script src="{% static 'js/event.js' %}"></script>
 </body>
