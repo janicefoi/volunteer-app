@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <style>
     #navbar li a i {
   font-size: 1.8em; /* Adjust the size */
@@ -193,10 +195,69 @@ form textarea{
 
 .contact-text p {
     margin-bottom: 20px;
-    font-size: 16px;
+    font-size: 15px;
+}
+#product1 .pro img {
+  width: 90%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.update-btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  background-color: #265247;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.dashboard-container {
+    display: flex;
+    height: 70vh;
 }
 
+.sidebar {
+    width: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 190px;
+}
 
+.menu-item {
+    width: 80%;
+    padding: 15px;
+    margin: 10px 0;
+    text-align: center;
+    border-left: 5px solid transparent;
+}
+
+.menu-item span:first-child {
+    color: #ff6b00;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.menu-item .count {
+    font-size: 15px;
+    color: #333;
+}
+
+.main-content {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+#hoursChart {
+    max-width: 600px;
+    max-height: 600px;
+}
 </style>
 </head>
 <body>
@@ -219,7 +280,7 @@ form textarea{
         <h4>Discover</h4>
         <h1>Find Opportunities to <br>Volunteer and Give Back</h1>
         <p>Discover local volunteer opportunities that align with your passions and make a tangible impact in your community. With our user-friendly platform, you can easily search, browse, and filter through a wide range of volunteer roles and causes.</p>
-        <a href="{% url 'opportunityvolunteer' %}"><button class="learn-more">Learn More</button></a>
+        <a href="{% url 'volunteerform' %}"><button class="learn-more">Volunteer Now</button></a>
         </div>
         <div class="tagline-image">
             <img src="{% static 'img/donate.avif' %}" alt="Volunteer Image">
@@ -255,7 +316,7 @@ form textarea{
             </a>
         </div> 
     </section>
-    <a href="{% url 'opportunityvolunteer' %}"><button class="volunteer-now">Volunteer Now!</button></a>
+    <a href="{% url 'opportunityvolunteer' %}"><button class="update-btn">Volunteer Now!</button></a>
 
     <section id="product1" class="section-p1">
         <section id="banner" class="section-m1">
@@ -276,7 +337,7 @@ form textarea{
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        
                     </div>
                 </div>
                 
@@ -317,29 +378,31 @@ form textarea{
                        
         </div>
     </section>
-    <a href="{% url 'events' %}"><button class="volunteer-now">More Events</button></a>
+    <a href="{% url 'events' %}"><button class="update-btn">More Events</button></a>
 
     <section id="product1" class="section-p1">
         
-            <div class="tracking-card">
-                <h2>Tracking Hours</h2>
-                <div class="clock-bg"></div>
-                <div class="details-container">
-                    <div class="details-box">
-                        <h3>Volunteering Details</h3>
-                        <p>Place: Nairobi, Utali Africa</p>
-                        <p>Event: USIU Frieda Brown Day</p>
-                        <p>Hours: 4 Hours</p>
-                    </div>
-                    <div class="details-box">
-                        <h3>Volunteering Details</h3>
-                        <p>Place: Nairobi Hospital</p>
-                        <p>Event: Cleaning and caring for the elderly</p>
-                        <p>Hours: 15 Hours</p>
-                    </div>
+        <div class="dashboard-container">
+            
+            <div class="sidebar">
+                <div><h2 style="text-align: center; font-size: 30px; font-weight: 700; text-decoration: underline;"> Track Report</h2></div>
+                <div class="menu-item">
+                    <span>Volunteering Hours:</span>
+                    <span class="count">20 hours</span>
                 </div>
-                <button class="update-btn">Update (Admin)</button>
+                <div class="menu-item">
+                    <span>Events: </span>
+                    <span class="count">6</span>
+                </div>
+                <div class="menu-item">
+                    <span>Donations:</span>
+                    <span class="count">Ksh 10,000</span>
+                </div>
             </div>
+            <div class="main-content">
+                <canvas id="hoursChart"></canvas>
+            </div>
+        </div>
     
             <div class="contact-section">
                 <div class="contact-text">
@@ -359,15 +422,18 @@ form textarea{
                 </div>
 
                 <div class="contact-form">
-                    <form action="mailto:VolunteerKE@gmail.com" method="get" enctype="text/plain">
+                    <form action="mailto:VolunteerKE@gmail.com" method="get" enctype="text/plain" id="volunteerform">
                         <input type="name" placeholder=" Name" required>
                         <input type="email" placeholder=" Email address" required>
                         <input type="" placeholder=" Mobile Number" required>
                         <textarea name="" id="" cols="35" rows="10" placeholder="How Can We Help You" required></textarea>
-                        <button class="volunteer-now" onclick="myFunction()" type="submit" >Submit</button>
+                        <button class="volunteer-now" onclick="myFunction(event)" type="submit" >Submit</button>
                         <script>
-                            function myFunction() {
+                            function myFunction(event) {
+                                event.preventDefault();
                                 alert("You are submitting your form!");
+
+                                document.getElementById('volunteerform').reset();
                         }
                         </script>      
                 
@@ -381,5 +447,9 @@ form textarea{
                     </form>
                 </div>
             </div>
+
+            <section id="header">
+            </section>
+        <script src="{% static 'js/home.js' %}"></script>
 </body>
 </html>

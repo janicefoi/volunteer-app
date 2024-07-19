@@ -8,7 +8,24 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.db.models import Count
+from django.contrib.auth.decorators import login_required
+from .models import VolunteerHours
 
+@login_required
+def dashboard(request):
+    user = request.user
+    volunteer_hours = VolunteerHours.objects.filter(user=user)
+    
+    data = {
+        'labels': [],
+        'data': [],
+    }
+
+    for entry in volunteer_hours:
+        data['labels'].append(entry.organization)
+        data['data'].append(entry.hours)
+    
+    return render(request, 'dashboard.html', {'chart_data': data})
 
 def index(request):
     if request.method == 'POST':

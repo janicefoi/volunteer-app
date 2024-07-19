@@ -257,7 +257,7 @@ button.normal{
 }
 
 #product1 .pro img {
-  width: 100%;
+  width: 80%;
   border-radius: 20px;
 }
 
@@ -393,7 +393,7 @@ body {
   display: block;
   margin: 20px auto 0;
   padding: 10px 20px;
-  background-color: #64d6ba;
+  background-color: #265247;
   color: white;
   border: none;
   border-radius: 5px;

@@ -16,6 +16,48 @@
       color: #fff; /* Adjust the color */
       margin-left: 10px;
     }
+    #product1 .pro img {
+  width: 90%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+#product1 .pro .desc {
+  text-align: start;
+  padding: 10px 0; 
+}
+
+#product1 .pro .desc span { 
+  color: rgba(99, 99, 102, 0.747);
+  font-size: 11px;
+}
+
+#product1 .pro .desc h5 {
+  padding-top: 7px;
+  color:rgba(0, 0, 0, 0.747);
+  font-size: 15px;
+}
+#product1 .pro .desc p {
+  padding-top: 7px;
+  color:rgba(43, 43, 44, 0.747);
+  font-size: 13px;
+}
+
+.volunteer-now {
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #265247ee;
+  color: white;
+  border-color: #64d6ba;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 3rem;
+}
     </style>
 </head>
 <body>
@@ -40,6 +82,8 @@
                 Find Volunteer Opportunities Near You
             </h4>
         </div>
+        <p style="text-align: center; font-weight: 500; font-size: 12px;"> Click on the organization of choice to start your volunteering journey today! </p>
+
     </section>
     
 
@@ -51,10 +95,11 @@
             {% for organization in childrenhomes %}
             <div class="pro">
                 <h4>{{ organization.name }}</h4>
-                <img src="{{ organization.image.url }}" alt="{{ organization.name }}">
-                <div class="desc">
+                <a href="{% url 'volunteerform' %}">
+                    <img src="{{ organization.image.url }}" alt="{{ organization.name }}">
+                </a>                <div class="desc">
                     <h5>Location: {{ organization.location }}</h5>
-                    <h5>Desc: {{ organization.description }}</h5>
+                    <p>Desc: {{ organization.description }}</p>
                 </div>
             </div>
             {% endfor %}
@@ -74,10 +119,11 @@
             {% for organization in hospitals %}
             <div class="pro">
                 <h4>{{ organization.name }}</h4>
-                <img src="{{ organization.image.url }}" alt="{{ organization.name }}">
-                <div class="desc">
+                <a href="{% url 'volunteerform' %}">
+                    <img src="{{ organization.image.url }}" alt="{{ organization.name }}">
+                </a>                <div class="desc">
                     <h5>Location: {{ organization.location }}</h5>
-                    <h5>Desc: {{ organization.description }}</h5>
+                    <p>Desc: {{ organization.description }}</p>
                 </div>
             </div>
             {% endfor %}
@@ -97,10 +143,11 @@
             {% for organization in elderlyhomes %}
             <div class="pro">
                 <h4>{{ organization.name }}</h4>
-                <img src="{{ organization.image.url }}" alt="{{ organization.name }}">
-                <div class="desc">
+                <a href="{% url 'volunteerform' %}">
+                    <img src="{{ organization.image.url }}" alt="{{ organization.name }}">
+                </a>                <div class="desc">
                     <h5>Location: {{ organization.location }}</h5>
-                    <h5>Desc: {{ organization.description }}</h5>
+                    <p>Desc: {{ organization.description }}</p>
                 </div>
             </div>
             {% endfor %}

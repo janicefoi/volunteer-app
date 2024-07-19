@@ -121,7 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
 
@@ -134,7 +133,7 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 USE_TZ = True
 TIME_ZONE = 'UTC'
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',  # Default backend
-]
-AUTH_USER_MODEL = 'app.User'
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',  # Default backend
+# ]
+# AUTH_USER_MODEL = 'app.User'
