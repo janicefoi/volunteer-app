@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    max-width: 600px;
-    /* margin: 0 auto; */
+    
+     margin: 0 auto; 
     
 }
 
@@ -39,8 +39,8 @@ h1{
 
 #navbar li{
     list-style: none;
-    margin-top: 30px;
-    padding: 0 20px;
+   
+    padding: 0 2px;
     position: relative;
 }
 

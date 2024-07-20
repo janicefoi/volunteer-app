@@ -1,31 +1,40 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volunteer Web App</title>
-    <link rel="icon" href="img/logo.png" type="image/icon type">
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/icon type">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/volunteerform.css' %}">
-</head>
-</head>
-<body>
-    <section id="background">
-    <section id="header">
-        <a href="home.html"><img src="img/logo-h.png" class="logo" alt=""></a>
-    <div>
-        <ul id="navbar">
-            <li><a class="active" href="home.html">Home</a> </li>
-            <li><a href="opportunity-volunteer.html">Find Organizations</a></li>
-            <li><a href="events.html">Events</a></li>
-            <li><a href="donations.html">Donate</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </div>
-    </section>
 
+
+
+    <style>
+        #navbar li a i {
+      font-size: 1.8em; /* Adjust the size */
+      color: #fff; /* Adjust the color */
+      margin-left: 10px;
+    }
+    
+    </style>
+</head>
+    <body>
+        <section id="header">
+            <a href="{% url 'home' %}"><img src="{% static 'img/logo-h.png' %}" class="logo" alt=""></a>
+            <div>
+                <ul id="navbar">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a class="active" href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
+                    <li><a href="{% url 'events' %}">Events</a></li>
+                    <li><a href="{% url 'donations' %}">Donate</a></li>
+                    <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> </a></li>
+
+                </ul>
+            </div>
+        </section>
     
     <form id="volunteerForm">
         <h1>Volunteer Sign Up Form</h1>

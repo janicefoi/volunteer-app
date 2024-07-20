@@ -11,6 +11,58 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/events.css' %}">
+    <style>
+        #navbar li a i {
+      font-size: 1.8em; /* Adjust the size */
+      color: #fff; /* Adjust the color */
+      margin-left: 10px;
+    }
+    .event {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 3px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  cursor: pointer;
+  width: 90%;
+}
+
+.event:hover {
+  transform: scale(1.05);
+}
+
+.event img {
+  width: 90%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 25px;
+}
+
+.event-desc {
+  padding: 15px;
+}
+
+.event h4 {
+  margin: 15px 0 10px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.event h5 {
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+.event p {
+  font-size: 12px;
+  color: #3a3939;
+  line-height: 1.4;
+}
+    </style>
 </head>
 <body>
 
@@ -22,16 +74,18 @@
                 <li><a href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
                 <li><a class="active" href="{% url 'events' %}">Events</a></li>
                 <li><a href="{% url 'donations' %}">Donate</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> </a></li>
             </ul>
         </div>
     </section>
 
     <section id="banner" class="section-m1">
         <div class="banner-content">
-            <h4 style="color: black; background-color: rgb(253, 245, 245); height: 45px; text-align: center; width: 1200px">
+            <h4 >
                 Current Events</h4>
         </div>
+        <p style="text-align: center; font-weight: 500; font-size: 12px;"> Click on the event of choice to sign up and make a difference! </p>
+
     </section>
 
     <section id="events" class="section-p1">
@@ -74,26 +128,7 @@
             <button id="confirmNo">No</button>
         </div>
     </div>
-    <section id="contact" class="section-p1">
-        <div class="contact-section">
-            <h2>Get in Touch</h2>
-            <p>We'd love to hear from you. Fill out the form below or reach out to us through social media.</p>
-            <div class="contact-info">
-                <div>
-                    <h3>Email</h3>
-                    <p>info@example.com</p>
-                </div>
-                <div>
-                    <h3>Phone</h3>
-                    <p>+1-555-555-5555</p>
-                </div>
-                <div>
-                    <h3>Office</h3>
-                    <p>123 Sample St, Sydney, NSW 2000 AU</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <script src="{% static 'js/event.js' %}"></script>
 </body>

@@ -1,0 +1,82 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Web App</title>
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+    <style>
+        #navbar li a i {
+      font-size: 1.8em; /* Adjust the size */
+      color: #fff; /* Adjust the color */
+      margin-left: 10px;
+    }
+    </style>
+</head>
+    <body>
+        <section id="header">
+            <a href="{% url 'home' %}"><img src="{% static 'img/logo-h.png' %}" class="logo" alt=""></a>
+            <div>
+                <ul id="navbar">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
+                    <li><a href="{% url 'events' %}">Events</a></li>
+                    <li><a href="{% url 'donations' %}">Donate</a></li>
+                    <li><a class="active" href="{% url 'profile' %}"><i class="fas fa-user"></i> </a></li>
+
+                </ul>
+            </div>
+        </section>
+    <div class="content">
+      <h1>Profile</h1>
+      
+      <div class="profile-section">
+        <img src="{% static 'img/climb.png' %}" alt="Chitundu Limbikani" class="profile-image">
+        <div class="profile-info">
+          <div class="profile-name">Chitundu Limbikani</div>
+          <div class="profile-handle">@Climbikani</div>
+        </div>
+      </div>
+    
+      <table>
+        <tr>
+          <th colspan="4" class="table-header">Volunteering Details</th>
+        </tr>
+        <tr>
+          <th>Organisations</th>
+          <th>Events</th>
+          <th>Donations</th>
+          <th>Hours</th>
+        </tr>
+        <tr>
+          <td>USIU</td>
+          <td>Frieda Brown Day</td>
+          <td>Ksh 10,000</td>
+          <td>4 hours</td>
+        </tr>
+        <tr>
+          <td>Nairobi Children's home</td>
+          <td>Donating Clothes</td>
+          <td>Ksh 5,000</td>
+          <td>5 hours</td>
+        </tr>
+        <tr>
+          <td>Nairobi Hospital</td>
+          <td>Ward cleaning</td>
+          <td>-----</td>
+          <td>10 hours</td>
+        </tr>
+        <tr>
+          <td>Githurai Elderly</td>
+          <td>Buying Food</td>
+          <td>Ksh 7,000</td>
+          <td>2 hours</td>
+        </tr>
+      </table>
+    </div>
+    </body>
+    </html>

@@ -9,6 +9,256 @@
     <link rel="icon" href="{% static 'img/logo.png' %}" type="image/icon type">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+    #navbar li a i {
+  font-size: 1.8em; /* Adjust the size */
+  color: #fff; /* Adjust the color */
+  margin-left: 10px;
+}
+#tagline {
+    display: flex;
+    justify-content: space-between;
+    padding: 70px;
+    background-color: #f0f0f0;
+    width: 80%;
+    margin-left: 100px;
+}
+
+.tagline-content {
+    flex: 1;
+    padding-right: 40px;
+    width: 50%;
+    padding-top: 20px;
+
+}
+
+.tagline-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 50%;
+    margin-top: -250px;
+}
+
+.tagline-image img {
+    max-width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    
+}
+#tagline h4{
+  padding-bottom: 15px;
+  color: #65C5AD;
+  font-size: larger;
+}
+
+#tagline h1{
+  color: #000;
+  padding: 0;
+  font-size: 35px;
+}
+
+#tagline h2{
+  color: #000;
+}
+
+#tagline p{
+  color: #000;
+  font-size: 15px;
+}
+
+#tagline button{
+  font-size: 15px;
+  font-weight: 700;
+  background-color: #65C5AD;
+  color: white;
+  border:10px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  margin-top: 10px;
+}
+.learn-more {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #2f4f4f;
+    color: white;
+    cursor: pointer;
+}
+
+.learn-more:hover {
+    background-color: #64d6ba;
+}
+
+#feature {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: 5.5rem;
+    margin-right: 18rem;
+   
+}
+
+#feature .fe-box{
+  width: 350px;
+  text-align: center;
+  padding: 1px 1px;
+}
+
+#feature .fe-box:hover{
+  border-radius: 10px;
+}
+
+#feature .fe-box img{
+  width: 120%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+#feature .fe-box h6 {
+  line-height: 1;
+  border-radius: 4px;
+  color:#2f4f4f;
+  display: inline-block;
+}
+.volunteer-now {
+  font-size: 15px;
+  font-weight: 700;
+  background-color: #59aa96;
+  color: white;
+  border-color: #64d6ba;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 1rem;
+  margin-left: 50%;
+}
+.contact-form form{
+    position:relative;
+}
+.contact-form form input,
+form textarea{
+    width: 100%;
+    padding: 14px;
+    background:#2f4f4f17;
+    color: rgb(0, 0, 0);
+    border: none;
+    outline: none;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.contact-form textarea{
+    resize: none;
+    height: 240px;
+}
+.contact-form .submit{
+    display: inline-block;
+    font-size: 16px;
+    background: #20211d;
+    color: rgb(255, 255, 255);
+    width: 160px;
+    transition: all .45s ease;
+}
+.contact-form .submit:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    background: #b13c3c;
+    color:#000000;
+}
+.contact-section{
+    background-color: #ffffff;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 150px;
+    margin-bottom: 50px;
+}
+
+.contact-text h2 {
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.contact-text p {
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+#product1 .pro img {
+  width: 90%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.update-btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  background-color: #265247;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.dashboard-container {
+    display: flex;
+    height: 70vh;
+}
+
+.sidebar {
+    width: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 190px;
+}
+
+.menu-item {
+    width: 80%;
+    padding: 15px;
+    margin: 10px 0;
+    text-align: center;
+    border-left: 5px solid transparent;
+}
+
+.menu-item span:first-child {
+    color: #ff6b00;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.menu-item .count {
+    font-size: 15px;
+    color: #333;
+}
+
+.main-content {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+#hoursChart {
+    max-width: 600px;
+    max-height: 600px;
+}
+</style>
 </head>
 <body>
 
@@ -20,17 +270,23 @@
                 <li><a href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
                 <li><a href="{% url 'events' %}">Events</a></li>
                 <li><a href="{% url 'donations' %}">Donate</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> </a></li>
             </ul>
         </div>
     </section>
 
     <section id="tagline">
+        <div class="tagline-content">
         <h4>Discover</h4>
         <h1>Find Opportunities to <br>Volunteer and Give Back</h1>
         <p>Discover local volunteer opportunities that align with your passions and make a tangible impact in your community. With our user-friendly platform, you can easily search, browse, and filter through a wide range of volunteer roles and causes.</p>
-        <a href="{% url 'opportunityvolunteer' %}"><button class="learn-more">Learn More</button></a>
+        <a href="{% url 'volunteerform' %}"><button class="learn-more">Volunteer Now</button></a>
+        </div>
+        <div class="tagline-image">
+            <img src="{% static 'img/donate.avif' %}" alt="Volunteer Image">
+        </div>
     </section>
+    
 
     <section id="banner" class="section-m1">
         <div class="banner-content">
@@ -41,26 +297,26 @@
     <section id="feature" class="section-p1">
         <div class="fe-box">
             <a href="{% url 'organization_type' organization_type='Children Homes' %}">
-                <img src="{% static 'img/ch.jpeg' %}" alt="Children Homes">
+                <img src="{% static 'img/ch.avif' %}" alt="Children Homes">
                 <h6>Children Homes</h6>
             </a>
         </div>
 
         <div class="fe-box">
             <a href="{% url 'organization_type' organization_type='Hospitals & Clinics' %}">
-                <img src="{% static 'img/hv.png' %}" alt="Hospitals & Clinics">
+                <img src="{% static 'img/clinic.avif' %}" alt="Hospitals & Clinics">
                 <h6>Hospitals & Clinics</h6>
             </a>
         </div>
 
         <div class="fe-box">
             <a href="{% url 'organization_type' organization_type='Elderly Homes' %}">
-                <img src="{% static 'img/eh.jpg' %}" alt="Elderly Homes">
+                <img src="{% static 'img/eh.avif' %}" alt="Elderly Homes">
                 <h6>Elderly Homes</h6>
             </a>
         </div> 
     </section>
-    <a href="{% url 'opportunityvolunteer' %}"><button class="volunteer-now">Volunteer Now!</button></a>
+    <a href="{% url 'opportunityvolunteer' %}"><button class="update-btn">Volunteer Now!</button></a>
 
     <section id="product1" class="section-p1">
         <section id="banner" class="section-m1">
@@ -81,7 +337,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        
                     </div>
                 </div>
                 
@@ -89,7 +345,7 @@
 
             <div class="pro">
                 <h4>Children's Clothes Donation</h4>
-                <img src="{% static 'img/cc.jpg' %}" alt="Children's Clothes Donation">
+                <img src="{% static 'img/cd.avif' %}" alt="Children's Clothes Donation">
                 <div class="desc">
                     <h5>Location: Nairobi, Zimmerman</h5>
                     <h5>Date: 14/9/2024</h5>
@@ -122,49 +378,78 @@
                        
         </div>
     </section>
-    <a href="{% url 'events' %}"><button class="volunteer-now">More Events</button></a>
+    <a href="{% url 'events' %}"><button class="update-btn">More Events</button></a>
 
     <section id="product1" class="section-p1">
         
-            <div class="tracking-card">
-                <h2>Tracking Hours</h2>
-                <div class="clock-bg"></div>
-                <div class="details-container">
-                    <div class="details-box">
-                        <h3>Volunteering Details</h3>
-                        <p>Place: Nairobi, Utali Africa</p>
-                        <p>Event: USIU Frieda Brown Day</p>
-                        <p>Hours: 4 Hours</p>
-                    </div>
-                    <div class="details-box">
-                        <h3>Volunteering Details</h3>
-                        <p>Place: Nairobi Hospital</p>
-                        <p>Event: Cleaning and caring for the elderly</p>
-                        <p>Hours: 15 Hours</p>
-                    </div>
+        <div class="dashboard-container">
+            
+            <div class="sidebar">
+                <div><h2 style="text-align: center; font-size: 30px; font-weight: 700; text-decoration: underline;"> Track Report</h2></div>
+                <div class="menu-item">
+                    <span>Volunteering Hours:</span>
+                    <span class="count">20 hours</span>
                 </div>
-                <button class="update-btn">Update (Admin)</button>
+                <div class="menu-item">
+                    <span>Events: </span>
+                    <span class="count">6</span>
+                </div>
+                <div class="menu-item">
+                    <span>Donations:</span>
+                    <span class="count">Ksh 10,000</span>
+                </div>
             </div>
+            <div class="main-content">
+                <canvas id="hoursChart"></canvas>
+            </div>
+        </div>
     
             <div class="contact-section">
-                <h2>Get in Touch</h2>
-                <p>We'd love to hear from you. Fill out the form below or reach out to us through social media.</p>
-                <div class="contact-info">
-                    <div>
-                        <h3>Email</h3>
-                        <p>info@example.com</p>
-                    </div>
-                    <div>
-                        <h3>Phone</h3>
-                        <p>+1-555-555-5555</p>
-                    </div>
-                    <div>
-                        <h3>Office</h3>
-                        <p>123 Sample St, Sydney, NSW 2000 AU</p>
-                    </div>
+                <div class="contact-text">
+                    <h2>Get in Touch</h2>
+                    <p>We'd love to hear from you.<br> Fill out the form below or reach out to us through social media.</p>
+                    <h3>Email</h3>
+                            <p>VolunteerKE@gmail.com</p>
+                        
+                
+                            <h3>Phone</h3>
+                            <p>+254 765 123 890</p>
+                        
+                            <h3>Office</h3>
+                            <p>973 Kimathi Street, Nairobi,Kenya</p>
+                        
+                    
+                </div>
+
+                <div class="contact-form">
+                    <form action="mailto:VolunteerKE@gmail.com" method="get" enctype="text/plain" id="volunteerform">
+                        <input type="name" placeholder=" Name" required>
+                        <input type="email" placeholder=" Email address" required>
+                        <input type="" placeholder=" Mobile Number" required>
+                        <textarea name="" id="" cols="35" rows="10" placeholder="How Can We Help You" required></textarea>
+                        <button class="volunteer-now" onclick="myFunction(event)" type="submit" >Submit</button>
+                        <script>
+                            function myFunction(event) {
+                                event.preventDefault();
+                                alert("You are submitting your form!");
+
+                                document.getElementById('volunteerform').reset();
+                        }
+                        </script>      
+                
+                        
+                        <button class="volunteer-now" onclick="myFunction2()" type="reset">Reset</button>
+                        <script>
+                            function myFunction2() {
+                                alert("Reseting the form")
+                            }
+                        </script>
+                    </form>
                 </div>
             </div>
-    
-    <script src="script.js"></script>
+
+            <section id="header">
+            </section>
+        <script src="{% static 'js/home.js' %}"></script>
 </body>
 </html>
