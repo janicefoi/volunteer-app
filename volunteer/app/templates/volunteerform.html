@@ -18,6 +18,143 @@
       color: #fff; /* Adjust the color */
       margin-left: 10px;
     }
+
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+#background {
+    background-image: url("../img/tg.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    margin: 30px 0;
+    color: #265247;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: #265247;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+#navbar li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#navbar li a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    transition: 0.3s ease;
+}
+
+#navbar li a:hover,
+#navbar li a.active {
+    color: #64d6ba;
+}
+
+#navbar li a.active::after,
+#navbar li a:hover::after {
+    content: "";
+    width: 30%;
+    height: 2px;
+    background-color: #64d6ba;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+}
+
+#volunteerForm {
+    background-color: white;
+    padding: 30px;
+    margin: 30px auto;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #265247;
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="tel"], 
+input[type="number"],
+select, 
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 40px;
+    background-color: #265247;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+    display: block;
+    margin: 30px auto 0;
+}
+
+input[type="submit"]:hover {
+    background-color: #64d6ba;
+    color: black !important;
+}
+
+input[type="file"] {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+}
+    
     
     </style>
 </head>
@@ -38,7 +175,7 @@
     
     <form id="volunteerForm">
         <h1>Volunteer Sign Up Form</h1>
-        <p style="text-align: center;">You will be contacted when we receive your application.<br>
+        <p style="text-align: center; font-size:14px; font-weight: 400;">You will be contacted when we receive your application.<br>
             Your placement and work time will be confirmed 15 days prior volunteer start date.</p>
         <div class="form-group">
             <label for="fullName">Full Name:</label>

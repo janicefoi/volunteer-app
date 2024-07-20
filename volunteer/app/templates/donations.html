@@ -17,15 +17,22 @@
       color: #fff; /* Adjust the color */
       margin-left: 10px;
     }
+
+    .cancel:hover,
+.checkout:hover {
+    background-color: #64d6ba;
+    color: black;
+}
+
     .donation-container {
     display: flex;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     overflow: hidden;
     max-width: 1200px;
-    height: 700px;
+    height: 600px;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 5px;
 }
 
     </style>
@@ -49,19 +56,18 @@
         <div class="donation-container">
             <img src="{% static 'img/don.avif' %}" width="600px" height="auto">
 
-            <div class="donation-form">
-                <p>Welcome to the donation page, please fill out the form below. Hopefully it is blessed.</p>
+            <div class="donation-form" >
+                <p style="font-size: 18px; margin-top:32px; font-weight: 700;">Welcome to the donation page, please fill out the form below. Hopefully it is blessed.</p>
                 
-                <label for="donation-type">Choose a donation type</label>
+                <label for="donation-type" style="font-size: 16px; margin-top:10px; font-weight: 700; color: black;">Choose a donation type</label>
                 <select id="donation-type">
+                    <option>Select Option</option>
                     <option>Children's Home</option>
-                    <option>Children's Home</option>
-                    <option>Children's Home</option>
-                    <option>Children's Home</option>
-                    <option>Children's Home</option>
+                    <option>Hospitals and Clinics</option>
+                    <option>Elderly Home</option>
                 </select>
 
-                <p>Choose a donation amount</p>
+                <p style="font-size: 16px; margin-top:10px; font-weight: 700; color: black;">Choose a donation amount</p>
                 <div class="donation-amounts">
                     <label><input type="radio" name="amount" value="1000" checked> Ksh. 1000</label>
                     <label><input type="radio" name="amount" value="5000"> Ksh. 5000</label>
@@ -73,7 +79,7 @@
                     </label>
                 </div>
 
-                <p>Choose a donation frequency</p>
+                <p style="font-size: 16px; margin-top:10px; font-weight: 700; color: black;">Choose a donation frequency</p>
                 <div class="donation-frequency">
                     <label><input type="radio" name="frequency" value="monthly" checked> Monthly</label>
                     <label><input type="radio" name="frequency" value="one-time"> One time</label>

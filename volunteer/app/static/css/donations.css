@@ -71,6 +71,12 @@ button {
     color: white;
 }
 
+.cancel:hover,
+.checkout:hover {
+    background-color: #64d6ba;
+    color: black;
+}
+
 #header{
     display: flex;
     align-content: center;

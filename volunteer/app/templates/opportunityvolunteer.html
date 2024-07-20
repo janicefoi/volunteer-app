@@ -42,7 +42,7 @@
   font-size: 13px;
 }
 
-.volunteer-now {
+/* .volunteer-now {
   font-size: 15px;
   font-weight: 500;
   background-color: #265247ee;
@@ -52,12 +52,55 @@
   border-radius: 10px;
   cursor: pointer;
   background-repeat: no-repeat;
+} */
+
+.volunteer-now {
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #265247;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.volunteer-now:hover,
+.volunteer:hover {
+    background-color: #64d6ba;
+    color: #265247;
 }
 
 .button-container {
   text-align: center;
   margin-top: 3rem;
 }
+
+footer #header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1px;
+}
+
+footer #navbar {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+footer #navbar a {
+    color: #fff;
+    font-size: 0.7rem;
+    margin: 0 1rem;
+    transition: color 0.3s ease;
+}
+
+footer #navbar a:hover {
+    color: #65C5AD;
+}
+
     </style>
 </head>
 <body>
@@ -82,7 +125,7 @@
                 Find Volunteer Opportunities Near You
             </h4>
         </div>
-        <p style="text-align: center; font-weight: 500; font-size: 12px;"> Click on the organization of choice to start your volunteering journey today! </p>
+        <p style="text-align: center; font-weight: 500; font-size: 16px; margin-top:32px;"> Click on the organization of choice to start your volunteering journey today! </p>
 
     </section>
     
@@ -156,19 +199,19 @@
             <a href="{% url 'organization_type' organization_type='Elderly Homes' %}" class="volunteer-now">More Elderly Homes</a>
         </div>
     </section>
-    
-   
 
-    <section id="header">
-        <div>
-            <ul id="navbar">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            </ul>
-        </div>
-    </section>
+    <footer>
+        <section id="header">
+            <div>
+                <ul id="navbar">
+                    <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                    <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                    <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </section>
+    </footer>
     
     <script src="script.js"></script>
 </body>
