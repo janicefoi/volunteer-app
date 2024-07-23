@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +12,10 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Global Styles */
+h1, h2, h4, h6, p {
+  font-size: calc(1vw + 1vh + .5vmin); /* Responsive font sizing */
+}
 /* Global Styles */
 
 h1 {
@@ -433,5 +439,66 @@ h3 {
   .details-box, .contact-info div {
       width: 100%;
       margin-bottom: 10px;
+  }
+}
+@media (max-width: 768px) {
+  #navbar li {
+    padding: 0 10px; /* Reduce padding on smaller screens */
+  }
+
+  #tagline {
+    flex-direction: column; /* Stack tagline content vertically */
+    padding: 20px;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .tagline-content, .tagline-image {
+    flex: 1;
+    padding-right: 20px;
+    width: auto;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  #feature {
+    flex-direction: column; /* Stack features vertically */
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #feature.fe-box {
+    width: 100%; /* Adjust feature box width */
+    padding: 10px;
+  }
+
+  .button-container {
+    margin-left: 0; /* Center button container */
+  }
+
+  #product1.pro-container {
+    flex-direction: column; /* Stack products vertically */
+    padding-left: 0;
+  }
+
+  #product1.pro {
+    width: 100%; /* Adjust product width */
+    min-width: 0;
+  }
+
+  .contact-section {
+    grid-template-columns: repeat(1, 1fr); /* Stack contact info vertically */
+  }
+
+  .contact-info div {
+    width: 100%; /* Adjust contact info width */
+  }
+
+  .dashboard-container {
+    flex-direction: column; /* Stack dashboard content vertically */
+  }
+
+  .sidebar, .main-content {
+    width: 100%; /* Adjust sidebar and main content width */
   }
 }

@@ -1,6 +1,7 @@
 {% load static %}
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,75 +9,136 @@
     <link rel="icon" href="{% static 'img/logo.png' %}" type="image/icon type">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-
     <style>
         #navbar li a i {
-      font-size: 1.8em; /* Adjust the size */
-      color: #fff; /* Adjust the color */
-      margin-left: 10px;
-    }
+            font-size: 1.8em;
+            color: #fff;
+            margin-left: 10px;
+        }
+        .hours-input-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 30px;
+        }
+        .hours-input-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .hours-input-section label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .hours-input-section input[type="number"],
+        .hours-input-section select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #2b5744;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .hours-input-section button[type="submit"] {
+            width: 30%;
+            padding: 10px;
+            background-color: #2b5744;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .hours-input-section button[type="submit"]:hover {
+            background-color: #bcd1bd;
+        }
+        .hours-input-section form {
+            display: flex;
+            flex-direction: column;
+        }
+        .hours-input-section br {
+            display: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
     </style>
 </head>
-    <body>
-        <section id="header">
-            <a href="{% url 'home' %}"><img src="{% static 'img/logo-h.png' %}" class="logo" alt=""></a>
-            <div>
-                <ul id="navbar">
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
-                    <li><a href="{% url 'events' %}">Events</a></li>
-                    <li><a href="{% url 'donations' %}">Donate</a></li>
-                    <li><a class="active" href="{% url 'profile' %}"><i class="fas fa-user"></i> </a></li>
-
-                </ul>
-            </div>
-        </section>
-    <div class="content">
-      <h1>Profile</h1>
-      
-      <div class="profile-section">
-        <img src="{% static 'img/climb.png' %}" alt="Chitundu Limbikani" class="profile-image">
-        <div class="profile-info">
-          <div class="profile-name">Chitundu Limbikani</div>
-          <div class="profile-handle">@Climbikani</div>
+<body>
+    <section id="header">
+        <a href="{% url 'home' %}"><img src="{% static 'img/logo-h.png' %}" class="logo" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
+                <li><a href="{% url 'events' %}">Events</a></li>
+                <li><a href="{% url 'donations' %}">Donate</a></li>
+                <li><a class="active" href="{% url 'profile' %}"><i class="fas fa-user"></i></a></li>
+            </ul>
         </div>
-      </div>
-    
-      <table>
-        <tr>
-          <th colspan="4" class="table-header">Volunteering Details</th>
-        </tr>
-        <tr>
-          <th>Organisations</th>
-          <th>Events</th>
-          <th>Donations</th>
-          <th>Hours</th>
-        </tr>
-        <tr>
-          <td>USIU</td>
-          <td>Frieda Brown Day</td>
-          <td>Ksh 10,000</td>
-          <td>4 hours</td>
-        </tr>
-        <tr>
-          <td>Nairobi Children's home</td>
-          <td>Donating Clothes</td>
-          <td>Ksh 5,000</td>
-          <td>5 hours</td>
-        </tr>
-        <tr>
-          <td>Nairobi Hospital</td>
-          <td>Ward cleaning</td>
-          <td>-----</td>
-          <td>10 hours</td>
-        </tr>
-        <tr>
-          <td>Githurai Elderly</td>
-          <td>Buying Food</td>
-          <td>Ksh 7,000</td>
-          <td>2 hours</td>
-        </tr>
-      </table>
+    </section>
+    <div class="content">
+        <h1>Profile</h1>
+        <div class="profile-section">
+            <img src="{% static 'img/climb.png' %}" alt="Chitundu Limbikani" class="profile-image">
+            <div class="profile-info">
+                <div class="profile-name">Chitundu Limbikani</div>
+                <div class="profile-handle">@Climbikani</div>
+            </div>
+        </div>
+        
+        <div class="hours-input-section">
+            <h2>Add Volunteering Hours</h2>
+            <form action="{% url 'add_hours' %}" method="post">
+                {% csrf_token %}
+                <label for="hours">Hours:</label>
+                <input type="number" id="hours" name="hours" min="1" required>
+                <br>
+                <label for="event">Event/Organization:</label>
+                <select id="event" name="event">
+                    <option value="Children's Home">Children's Home</option>
+                    <option value="Other Event">Other Event</option>
+                </select>
+                <br>
+                <label for="donations">Donations made:</label>
+                <input type="number" id="donations" name="donations" min="0">
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+        <table>
+            <tr>
+                <th colspan="4" class="table-header">Volunteering Details</th>
+            </tr>
+            <tr>
+                <th>Organization</th>
+                <th>Event</th>
+                <th>Donations</th>
+                <th>Hours</th>
+            </tr>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.organization }}</td>
+                <td>{{ record.event }}</td>
+                <td>{{ record.donations }}</td>
+                <td>{{ record.hours }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
-    </body>
-    </html>
+</body>
+</html>

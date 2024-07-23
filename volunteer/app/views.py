@@ -5,11 +5,14 @@ from .forms import UserRegistrationForm
 from .models import Organization, Event, UserEvent
 from django.utils import timezone
 from django.http import JsonResponse
+from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from .models import VolunteerHours
+from .models import VolunteeringRecord
+from .forms import VolunteeringRecordForm
 
 @login_required
 def dashboard(request):
@@ -26,6 +29,18 @@ def dashboard(request):
         data['data'].append(entry.hours)
     
     return render(request, 'dashboard.html', {'chart_data': data})
+
+def profile(request):
+    if request.method == 'POST':
+        form = VolunteeringRecordForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = VolunteeringRecordForm()
+    
+    records = VolunteeringRecord.objects.all()
+    return render(request, 'profile.html', {'form': form, 'records': records})
 
 def index(request):
     if request.method == 'POST':

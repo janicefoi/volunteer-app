@@ -10,9 +10,17 @@ class VolunteerHours(models.Model):
     date = models.DateField()
 
     def __str__(self):
-        return f"{self.user.username} - {self.organization} - {self.hours}h"
+        return f"{self.organization} - {self.event}"
+    
+class VolunteeringRecord(models.Model):
+    organization = models.CharField(max_length=255)
+    event = models.CharField(max_length=255)
+    donations = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    hours = models.PositiveIntegerField()
 
-
+    def __str__(self):
+        return f"{self.organization} - {self.event}"
+    
 class User(AbstractUser):
     email = models.EmailField(unique=True)
     total_service_hours = models.PositiveIntegerField(default=0)

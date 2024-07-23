@@ -1,6 +1,8 @@
 # forms.py
 from django import forms
 from .models import User
+from .models import VolunteeringRecord
+
 
 class UserRegistrationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -24,3 +26,8 @@ class UserRegistrationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    
+class VolunteeringRecordForm(forms.ModelForm):
+    class Meta:
+        model = VolunteeringRecord
+        fields = ['organization', 'event', 'donations', 'hours']
