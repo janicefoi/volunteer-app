@@ -3,24 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-class VolunteerHours(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    organization = models.CharField(max_length=100)
-    hours = models.DecimalField(max_digits=5, decimal_places=2)
-    date = models.DateField()
 
-    def __str__(self):
-        return f"{self.organization} - {self.event}"
-    
-class VolunteeringRecord(models.Model):
-    organization = models.CharField(max_length=255)
-    event = models.CharField(max_length=255)
-    donations = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    hours = models.PositiveIntegerField()
-
-    def __str__(self):
-        return f"{self.organization} - {self.event}"
-    
 class User(AbstractUser):
     email = models.EmailField(unique=True)
     total_service_hours = models.PositiveIntegerField(default=0)
@@ -54,6 +37,7 @@ class Organization(models.Model):
     def __str__(self):
         return self.name
 
+
 class Event(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -67,21 +51,14 @@ class Event(models.Model):
         return self.name
 
 
-
 class Donation(models.Model):
-    DONATION_TYPES = [
-        ('money', 'Money'),
-        ('food', 'Food'),
-        ('clothing', 'Clothing'),
-    ]
-
     name = models.CharField(max_length=100)
     description = models.TextField()
-    type = models.CharField(max_length=20, choices=DONATION_TYPES)
-    goal = models.DecimalField(max_digits=10, decimal_places=2)
-    funds_raised = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    supporters = models.PositiveIntegerField(default=0)
-    deadline = models.DateField()
+    image = models.ImageField(upload_to='donations/')
+    goal = models.PositiveIntegerField()
+    funds_raised = models.PositiveIntegerField(default=0, null=True, blank=True)
+    supporters = models.PositiveIntegerField(default=0, null=True, blank=True)
+    deadline = models.DateField(null=True, blank=True)
     organization = models.ForeignKey(Organization, related_name='donations', null=True, blank=True, on_delete=models.SET_NULL)
     event = models.ForeignKey(Event, related_name='donations', null=True, blank=True, on_delete=models.SET_NULL)
 
@@ -93,6 +70,28 @@ class Donation(models.Model):
             return (self.funds_raised / self.goal) * 100
         return 0
 
+
+class VolunteerHours(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    date_from = models.DateTimeField()
+    date_to = models.DateTimeField()
+    hours = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.user.username} volunteering at {self.organization.name}"
+
+
+class VolunteeringRecord(models.Model):
+    organization = models.CharField(max_length=255)
+    event = models.CharField(max_length=255)
+    donations = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    hours = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.organization} - {self.event}"
+
+
 class UserDonation(models.Model):
     user = models.ForeignKey(User, related_name='donations', on_delete=models.CASCADE)
     donation = models.ForeignKey(Donation, related_name='user_donations', on_delete=models.CASCADE)
@@ -102,11 +101,10 @@ class UserDonation(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.donation.name}"
 
+
 class UserEvent(models.Model):
     user = models.ForeignKey(User, related_name='events', on_delete=models.CASCADE)
     event = models.ForeignKey(Event, related_name='user_events', on_delete=models.CASCADE)
 
-
     def __str__(self):
         return f"{self.user.username} - {self.event.name}"
-

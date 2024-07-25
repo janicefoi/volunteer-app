@@ -1,86 +1,81 @@
 body {
     font-family: Arial, sans-serif;
-    
-     margin: 0 auto; 
-    
+    margin: 0;
 }
 
-#background{
+#background {
     background-image: url("tg.jpeg");
     background-repeat: no-repeat;
-    background-size: cover; 
+    background-size: cover;
+    padding: 20px;
 }
 
-h1{
+h1 {
     text-align: center;
     margin-bottom: 35px;
 }
 
-#header{
+#header {
     display: flex;
     align-content: center;
     justify-content: space-between;
     padding: 20px 80px;
     background-color: #265247;
-    box-shadow: 0 5px 15px rgb(0, 0, 0, 0.06);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
     z-index: 999;
     position: sticky;
     top: 0;
-    left: 0;    
-    width: 1130px;
-    margin: 0 auto;
+    left: 0;
+    width: 100%;
 }
 
-#navbar{
+#navbar {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#navbar li{
+#navbar li {
     list-style: none;
-   
     padding: 0 2px;
     position: relative;
 }
 
-#navbar li a{
-  text-decoration: none;
-  font-size:  16px;
-  font-weight: 600;
-  color: white;
-  transition: 0.3s ease;
+#navbar li a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    transition: 0.3s ease;
 }
 
 #navbar li a:hover,
-#navbar li a.active{
-  color: #64d6ba;
+#navbar li a.active {
+    color: #64d6ba;
 }
 
 #navbar li a.active::after,
-#navbar li a:hover::after{
-  content: "";
-  width: 30%;
-  height: 2px;
-  background-color: #64d6ba;
-  position: absolute;
-  bottom: -4px;
-  left: 20px;
+#navbar li a:hover::after {
+    content: "";
+    width: 30%;
+    height: 2px;
+    background-color: #64d6ba;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
 }
 
-#volunteerForm{
+#volunteerForm {
     border: 1px solid #000;
-    padding: 4px 40px;
-    margin-top: 30px;
-    margin-left: 99%;
-    width: 100%;
+    padding: 40px;
+    margin: 30px auto;
+    width: 80%;
     border-radius: 10px;
     background-color: #fff;
 }
 
 .form-group {
     margin-bottom: 15px;
-    
 }
 
 label {
@@ -110,9 +105,9 @@ input[type="submit"] {
     cursor: pointer;
     border: none;
     outline: none;
-    transform: 0.2s;
-    margin-left: 200px;
-    margin-bottom: 20px;
+    transition: 0.2s;
+    margin: 20px auto;
+    display: block;
 }
 
 input[type="submit"]:hover {

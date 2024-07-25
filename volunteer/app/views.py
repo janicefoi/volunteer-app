@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login  # Renamed to avoid conflict
 from django.contrib.auth import authenticate,  login
-from .forms import UserRegistrationForm
-from .models import Organization, Event, UserEvent
+from .forms import UserRegistrationForm, VolunteeringRecordForm, VolunteerForm
+from .models import Organization, Event, UserEvent, VolunteeringRecord, VolunteerHours, Donation
 from django.utils import timezone
 from django.http import JsonResponse
 from django.http import HttpResponse
@@ -10,9 +10,8 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
-from .models import VolunteerHours
-from .models import VolunteeringRecord
-from .forms import VolunteeringRecordForm
+
+
 
 @login_required
 def dashboard(request):
@@ -93,9 +92,6 @@ def user_login(request):
 def home(request):
     return render(request, 'home.html')
 
-def donations(request):
-    return render(request, 'donations.html')
-
 
 def profile(request):
     return render(request, 'profile.html')
@@ -157,8 +153,33 @@ def organization_type(request, organization_type):
     context = {'organizations': organizations, 'organization_type': organization_type}
     return render(request, 'organizationtype.html', context)
 
+
+@login_required
 def volunteerform(request):
-    return render(request, 'volunteerform.html')
+    if request.method == 'POST':
+        form = VolunteerForm(request.POST, user=request.user)
+        if form.is_valid():
+            volunteer_hours = form.save(commit=False)
+            volunteer_hours.user = request.user
+            # Calculate hours
+            time_difference = volunteer_hours.date_to - volunteer_hours.date_from
+            volunteer_hours.hours = time_difference.total_seconds() / 3600
+            volunteer_hours.save()
+            # Respond with a success message
+            return JsonResponse({'message': 'Thank you for volunteering! Your information has been submitted.'})
+    else:
+        form = VolunteerForm(user=request.user)
+    return render(request, 'volunteerform.html', {'form': form})
+
 
 def signin(request):
     return render(request, 'sign-in.html')
+
+
+def donations(request):
+    donations = Donation.objects.all()
+    return render(request, 'donations.html', {'donations': donations})
+
+
+def donate(request):
+    return render(request, 'donate.html')

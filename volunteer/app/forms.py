@@ -1,7 +1,6 @@
 # forms.py
 from django import forms
-from .models import User
-from .models import VolunteeringRecord
+from .models import User, VolunteeringRecord, VolunteerHours, Organization
 
 
 class UserRegistrationForm(forms.ModelForm):
@@ -31,3 +30,30 @@ class VolunteeringRecordForm(forms.ModelForm):
     class Meta:
         model = VolunteeringRecord
         fields = ['organization', 'event', 'donations', 'hours']
+
+
+class VolunteerForm(forms.ModelForm):
+    name = forms.CharField(max_length=100, initial='')
+    email = forms.EmailField()
+    phone_number = forms.CharField(max_length=15)
+    is_adult = forms.BooleanField(required=False, label="Are you older than 18?")
+    group_size = forms.IntegerField(required=False, label="How many members are in your group?")
+    organization = forms.ModelChoiceField(queryset=Organization.objects.all(), empty_label="Select an organization")
+
+    class Meta:
+        model = VolunteerHours
+        fields = ['organization', 'date_from', 'date_to']
+        widgets = {
+            'date_from': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'date_to': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super(VolunteerForm, self).__init__(*args, **kwargs)
+        if user:
+            self.fields['name'].initial = user.get_full_name()
+            self.fields['email'].initial = user.email
+
+
+

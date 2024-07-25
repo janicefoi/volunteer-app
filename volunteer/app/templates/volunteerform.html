@@ -1,6 +1,7 @@
 {% load static %}
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,117 +10,86 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/volunteerform.css' %}">
-
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
-        #navbar li a i {
-      font-size: 1.8em; /* Adjust the size */
-      color: #fff; /* Adjust the color */
-      margin-left: 10px;
-    }
-    
+        .modal-content {
+            text-align: center;
+            padding: 20px;
+        }
+        .modal-footer {
+            justify-content: center;
+        }
     </style>
 </head>
-    <body>
-        <section id="header">
-            <a href="{% url 'home' %}"><img src="{% static 'img/logo-h.png' %}" class="logo" alt=""></a>
-            <div>
-                <ul id="navbar">
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a class="active" href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
-                    <li><a href="{% url 'events' %}">Events</a></li>
-                    <li><a href="{% url 'donations' %}">Donate</a></li>
-                    <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> </a></li>
+<body>
+    <section id="header">
+        <a href="{% url 'home' %}"><img src="{% static 'img/logo-h.png' %}" class="logo" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a class="active" href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
+                <li><a href="{% url 'events' %}">Events</a></li>
+                <li><a href="{% url 'donations' %}">Donate</a></li>
+                <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i></a></li>
+            </ul>
+        </div>
+    </section>
 
-                </ul>
-            </div>
-        </section>
-    
-    <form id="volunteerForm">
-        <h1>Volunteer Sign Up Form</h1>
-        <p style="text-align: center;">You will be contacted when we receive your application.<br>
-            Your placement and work time will be confirmed 15 days prior volunteer start date.</p>
+    <form id="volunteerForm" method="post">
+        {% csrf_token %}
         <div class="form-group">
-            <label for="fullName">Full Name:</label>
-            <input type="text" id="fullName" name="fullName" required>
+            <label for="id_name">Name:</label>
+            {{ form.name }}
         </div>
         <div class="form-group">
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="id_email">Email:</label>
+            {{ form.email }}
         </div>
         <div class="form-group">
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required>
+            <label for="id_phone_number">Phone Number:</label>
+            {{ form.phone_number }}
         </div>
         <div class="form-group">
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address" required>
+            <label for="id_is_adult">Are you older than 18?</label>
+            {{ form.is_adult }}
         </div>
         <div class="form-group">
-            <label for="city">City:</label>
-            <input type="text" id="city" name="city" required>
-        </div>
-        <!-- <div class="form-group">
-            <label for="state">State:</label>
-            <input type="text" id="state" name="state" required>
-        </div> -->
-        <!-- <div class="form-group">
-            <label for="zip">Postal Zip Code:</label>
-            <input type="text" id="zip" name="zip" required>
-        </div> -->
-        <div class="form-group">
-            <label for="age">Are you over 18?</label>
-            <select id="age" name="age" required>
-                <option value="">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
+            <label for="id_group_size">How many members are in your group?</label>
+            {{ form.group_size }}
         </div>
         <div class="form-group">
-            <label for="organization">Company/School/Organization:</label>
-            <input type="text" id="organization" name="organization">
+            <label for="id_organization">Organization:</label>
+            {{ form.organization }}
         </div>
         <div class="form-group">
-            <label for="members">How many members are in your group?</label>
-            <input type="number" id="members" name="members">
+            <label for="id_date_from">From:</label>
+            {{ form.date_from }}
         </div>
         <div class="form-group">
-            <label for="photo">Do you have a photo of the group?</label>
-            <select id="photo" name="photo">
-                <option value="">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-        </div>
-
-        <div class="form-group" id="photoUploadGroup" style="display: none;">
-            <label for="photoUpload">Upload Group Photo:</label>
-            <input type="file" id="photoUpload" name="photoUpload" accept="image/*">
-        </div>
-
-        <div class="form-group">
-            <label>Preferred Area to Volunteer:</label>
-            <select name="preferredArea" required>
-                <option value="">Select Place</option>
-                <option value="optionA">Mama Fatuma</option>
-                <option value="optionB">School of Autistic</option>
-                <option value="optionC">Nairobi Hospital</option>
-                <option value="optionD">Care for the Elderly</option>
-                <option value="optionE">Pet for pet</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="skillset">What kind of skill set are you volunteering?</label>
-            <textarea id="skillset" name="skillset" rows="4"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="specialNeeds">Any special needs you want us to know:</label>
-            <textarea id="specialNeeds" name="specialNeeds" rows="4"></textarea>
+            <label for="id_date_to">To:</label>
+            {{ form.date_to }}
         </div>
         <input type="submit" value="Submit Form">
     </form>
-</section>
-    <script src="{% static 'css/volunteerform.css' %}"></script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Thank you for volunteering! Your information has been submitted.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/volunteerform.js' %}"></script>
 </body>
 </html>

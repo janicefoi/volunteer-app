@@ -136,4 +136,4 @@ TIME_ZONE = 'UTC'
 # AUTHENTICATION_BACKENDS = [
 #     'django.contrib.auth.backends.ModelBackend',  # Default backend
 # ]
-# AUTH_USER_MODEL = 'app.User'
+#AUTH_USER_MODEL = 'app.User'

@@ -6,28 +6,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volunteer Web App</title>
+    <title>Volunteer Web App - Donations</title>
     <link rel="icon" href="{% static 'img/logo.png' %}" type="image/icon type">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
-    <link rel="stylesheet" href="{% static 'css/donations.css' %}">
+    <link rel="stylesheet" href="{% static 'css/events.css' %}">
     <style>
         #navbar li a i {
-      font-size: 1.8em; /* Adjust the size */
-      color: #fff; /* Adjust the color */
-      margin-left: 10px;
-    }
-    .donation-container {
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    overflow: hidden;
-    max-width: 1200px;
-    height: 700px;
-    margin: 0 auto;
-    margin-top: 50px;
-}
-
+            font-size: 1.8em;
+            color: #fff;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -45,94 +34,36 @@
         </div>
     </section>
 
-    <main>
-        <div class="donation-container">
-            <img src="{% static 'img/don.avif' %}" width="600px" height="auto">
+    <section id="banner" class="section-m1">
+        <div class="banner-content">
+            <h4>Current Donations</h4>
+        </div>
+        <p style="text-align: center; font-weight: 500; font-size: 12px;">Click on a donation to view more details and contribute!</p>
+    </section>
 
-            <div class="donation-form">
-                <p>Welcome to the donation page, please fill out the form below. Hopefully it is blessed.</p>
-                
-                <label for="donation-type">Choose a donation type</label>
-                <select id="donation-type">
-                    <option>Children's Home</option>
-                    <option>Children's Home</option>
-                    <option>Children's Home</option>
-                    <option>Children's Home</option>
-                    <option>Children's Home</option>
-                </select>
-
-                <p>Choose a donation amount</p>
-                <div class="donation-amounts">
-                    <label><input type="radio" name="amount" value="1000" checked> Ksh. 1000</label>
-                    <label><input type="radio" name="amount" value="5000"> Ksh. 5000</label>
-                    <label><input type="radio" name="amount" value="10000"> Ksh. 10,000</label>
-                    <label>
-                        <input type="radio" name="amount" value="custom"> 
-                        Enter a custom donation amount<br>
-                        <input type="number" id="custom-amount" placeholder="Enter amount" >
-                    </label>
-                </div>
-
-                <p>Choose a donation frequency</p>
-                <div class="donation-frequency">
-                    <label><input type="radio" name="frequency" value="monthly" checked> Monthly</label>
-                    <label><input type="radio" name="frequency" value="one-time"> One time</label>
-                </div>
-
-                <div class="buttons">
-                    <button class="cancel" id="cancelBtn">Cancel</button>
-                    <button class="checkout" id="checkoutBtn">Go to checkout</button>
+    <section id="events" class="section-p1">
+        <div class="event-container">
+            {% for donation in donations %}
+            <div class="event">
+                <h4>{{ donation.name }}</h4>
+                <img src="{{ donation.image.url }}" alt="{{ donation.name }}">
+                <div class="event-desc">
+                    <h5>Description: {{ donation.description }}</h5>
+                    <h5>Goal: {{ donation.goal }} Ksh</h5>
+                    <h5>Funds Raised:{{ donation.funds_raised }} Ksh</h5>
+                    <h5>Supporters: {{ donation.supporters }}</h5>
+                    <h5>Deadline: {{ donation.deadline|date:"j F Y" }}</h5>
+                    {% if donation.organization %}
+                    <h5>Organization: {{ donation.organization.name }}</h5>
+                    {% endif %}
+                    {% if donation.event %}
+                    <h5>Event: {{ donation.event.name }}</h5>
+                    {% endif %}
                 </div>
             </div>
+            {% endfor %}
         </div>
-    </main>
+    </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const amountInputs = document.querySelectorAll('input[name="amount"]');
-            const customAmountInput = document.getElementById('custom-amount');
-            const cancelBtn = document.getElementById('cancelBtn');
-            const checkoutBtn = document.getElementById('checkoutBtn');
-
-            // Enable/disable custom amount input
-            amountInputs.forEach(input => {
-                input.addEventListener('change', function() {
-                    if (this.value === 'custom') {
-                        customAmountInput.disabled = false;
-                        customAmountInput.focus();
-                    } else {
-                        customAmountInput.disabled = true;
-                        customAmountInput.value = '';
-                    }
-                });
-            });
-
-            // Cancel button functionality
-            cancelBtn.addEventListener('click', function() {
-                if (confirm('Are you sure you want to cancel your donation?')) {
-                    // Reset form or redirect to home page
-                    alert('Donation cancelled');
-                    // You could add: window.location.href = 'home.html';
-                }
-            });
-
-            // Checkout button functionality
-            checkoutBtn.addEventListener('click', function() {
-                let selectedAmount = document.querySelector('input[name="amount"]:checked').value;
-                if (selectedAmount === 'custom') {
-                    selectedAmount = customAmountInput.value;
-                }
-                const frequency = document.querySelector('input[name="frequency"]:checked').value;
-                const donationType = document.getElementById('donation-type').value;
-
-                if (selectedAmount && frequency) {
-                    alert(`Thank you for your ${frequency} donation of Ksh. ${selectedAmount} to ${donationType}!`);
-                    // Here you would typically send this data to a server or payment processor
-                } else {
-                    alert('Please select a donation amount and frequency.');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
