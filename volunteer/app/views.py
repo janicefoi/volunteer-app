@@ -223,7 +223,7 @@ def initiate_mpesa_payment(request):
 
         headers = {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer VxXaYtyFX1LRJ9s01tsiUsLl6L5k'
+            'Authorization': 'Bearer 3t3io0jQbtZjAPz3eSjGYffgYulY'
         }
 
         print("Mpesa Request Body:", json.dumps(payload))
