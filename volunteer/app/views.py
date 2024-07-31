@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login  # Renamed to avoid conflict
 from django.contrib.auth import authenticate,  login
 from .forms import UserRegistrationForm, VolunteeringRecordForm, VolunteerForm
-from .models import Organization, Event, UserEvent, VolunteeringRecord, VolunteerHours, Donation
+from .models import Organization, Event, UserEvent, VolunteeringRecord, VolunteerHours, Donation, UserDonation
 from django.utils import timezone
 from django.http import JsonResponse
 from django.http import HttpResponse
@@ -10,6 +10,15 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
+import base64
+import datetime
+import json
+import requests
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.shortcuts import get_object_or_404
+from django.db.models import Sum, Max
 
 
 
@@ -86,15 +95,8 @@ def user_login(request):
     # If method is not POST or authentication fails, render the login form
     return render(request, 'login.html')
 
-
-
-
 def home(request):
     return render(request, 'home.html')
-
-
-def profile(request):
-    return render(request, 'profile.html')
 
 
 def events(request):
@@ -183,3 +185,99 @@ def donations(request):
 
 def donate(request):
     return render(request, 'donate.html')
+
+
+
+@login_required
+@csrf_exempt
+@require_POST
+def initiate_mpesa_payment(request):
+    try:
+        json_data = json.loads(request.body)
+        amount = json_data.get('amount')
+        phone_number = json_data.get('phone_number')
+        donation_id = json_data.get('donation_id')
+        donation = get_object_or_404(Donation, id=donation_id)
+        
+        mpesa_api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
+        business_short_code = "174379"
+        lipa_na_mpesa_online_passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
+        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        password = base64.b64encode(
+            (business_short_code + lipa_na_mpesa_online_passkey + timestamp).encode('utf-8')
+        ).decode('utf-8')
+        
+        payload = {
+            "BusinessShortCode": int(business_short_code),
+            "Password": password,
+            "Timestamp": timestamp,
+            "TransactionType": "CustomerPayBillOnline",
+            "Amount": int(amount),
+            "PartyA": int(phone_number),
+            "PartyB": int(business_short_code),
+            "PhoneNumber": int(phone_number),
+            "CallBackURL": "https://yourcallbackurl.com/mpesa-callback",
+            "AccountReference": "Donation",
+            "TransactionDesc": f"Donation to {donation.name}",
+        }
+
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer VxXaYtyFX1LRJ9s01tsiUsLl6L5k'
+        }
+
+        print("Mpesa Request Body:", json.dumps(payload))
+
+        response = requests.post(mpesa_api_url, json=payload, headers=headers)
+        print("Mpesa Response:", response.text)
+
+        response_data = response.json()
+
+        if response_data.get('ResponseCode') == '0':
+            # Create a UserDonation instance only if payment initiation is successful
+            UserDonation.objects.create(
+                user=request.user,
+                donation=donation,
+                amount=amount,
+                date=datetime.datetime.now()
+            )
+            donation.funds_raised += amount
+            donation.supporters += 1
+            donation.save()
+            return JsonResponse({'status': 'success', 'message': 'Please complete the payment on your phone.'})
+        else:
+            return JsonResponse({'status': 'error', 'message': response_data.get('errorMessage', 'Payment initiation failed.')})
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)})
+
+
+@login_required
+def user_profile(request):
+    user = request.user
+    user_events = UserEvent.objects.filter(user=user)
+    volunteer_hours = VolunteerHours.objects.filter(user=user, verified=True)  # Only include verified hours
+    total_volunteer_hours = volunteer_hours.aggregate(Sum('hours'))['hours__sum'] or 0
+    
+    # Group donations by the cause and aggregate amounts
+    donations = (
+        UserDonation.objects.filter(user=user)
+        .values('donation__name')
+        .annotate(total_amount=Sum('amount'), latest_date=Max('date'))
+    )
+    total_donated_amount = donations.aggregate(total=Sum('total_amount'))['total'] or 0
+
+    context = {
+        'user': user,
+        'user_events': user_events,
+        'volunteer_hours': volunteer_hours,
+        'total_volunteer_hours': total_volunteer_hours,
+        'donations': donations,
+        'total_donated_amount': total_donated_amount,
+    }
+
+    return render(request, 'profile.html', context)
+
+
+
+

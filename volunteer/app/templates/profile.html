@@ -1,144 +1,105 @@
 {% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volunteer Web App</title>
-    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/icon type">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <title>User Profile</title>
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-    <style>
-        #navbar li a i {
-            font-size: 1.8em;
-            color: #fff;
-            margin-left: 10px;
-        }
-        .hours-input-section {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            margin-bottom: 30px;
-        }
-        .hours-input-section h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .hours-input-section label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .hours-input-section input[type="number"],
-        .hours-input-section select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #2b5744;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .hours-input-section button[type="submit"] {
-            width: 30%;
-            padding: 10px;
-            background-color: #2b5744;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .hours-input-section button[type="submit"]:hover {
-            background-color: #bcd1bd;
-        }
-        .hours-input-section form {
-            display: flex;
-            flex-direction: column;
-        }
-        .hours-input-section br {
-            display: none;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-            text-align: left;
-        }
-    </style>
 </head>
 <body>
-    <section id="header">
-        <a href="{% url 'home' %}"><img src="{% static 'img/logo-h.png' %}" class="logo" alt=""></a>
-        <div>
-            <ul id="navbar">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'opportunityvolunteer' %}">Find Organizations</a></li>
-                <li><a href="{% url 'events' %}">Events</a></li>
-                <li><a href="{% url 'donations' %}">Donate</a></li>
-                <li><a class="active" href="{% url 'profile' %}"><i class="fas fa-user"></i></a></li>
-            </ul>
+    <div class="container">
+        <h1 class="profile-header">{{ user.username }}'s Profile</h1>
+        <section class="user-info">
+            <h2>User Information</h2>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </section>
+
+        <div class="events-info">
+            <h2>Events Signed Up For</h2>
+            {% if user_events %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Description</th>
+                            <th>Location</th>
+                            <th>Date and Time</th>
+                            <th>Organization</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user_event in user_events %}
+                            <tr>
+                                <td>{{ user_event.event.name }}</td>
+                                <td>{{ user_event.event.description }}</td>
+                                <td>{{ user_event.event.location }}</td>
+                                <td>{{ user_event.event.date_time }}</td>
+                                <td>{{ user_event.event.organization.name }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No events found.</p>
+            {% endif %}
         </div>
-    </section>
-    <div class="content">
-        <h1>Profile</h1>
-        <div class="profile-section">
-            <img src="{% static 'img/climb.png' %}" alt="Chitundu Limbikani" class="profile-image">
-            <div class="profile-info">
-                <div class="profile-name">Chitundu Limbikani</div>
-                <div class="profile-handle">@Climbikani</div>
-            </div>
-        </div>
-        
-        <div class="hours-input-section">
-            <h2>Add Volunteering Hours</h2>
-            <form action="{% url 'add_hours' %}" method="post">
-                {% csrf_token %}
-                <label for="hours">Hours:</label>
-                <input type="number" id="hours" name="hours" min="1" required>
-                <br>
-                <label for="event">Event/Organization:</label>
-                <select id="event" name="event">
-                    <option value="Children's Home">Children's Home</option>
-                    <option value="Other Event">Other Event</option>
-                </select>
-                <br>
-                <label for="donations">Donations made:</label>
-                <input type="number" id="donations" name="donations" min="0">
-                <br>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-        
-        <table>
-            <tr>
-                <th colspan="4" class="table-header">Volunteering Details</th>
-            </tr>
-            <tr>
-                <th>Organization</th>
-                <th>Event</th>
-                <th>Donations</th>
-                <th>Hours</th>
-            </tr>
-            {% for record in records %}
-            <tr>
-                <td>{{ record.organization }}</td>
-                <td>{{ record.event }}</td>
-                <td>{{ record.donations }}</td>
-                <td>{{ record.hours }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+
+        <section class="volunteer-hours">
+            <h2>Verified Volunteer Hours: {{ total_volunteer_hours }}</h2>
+            {% if volunteer_hours %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Organization</th>
+                            <th>Hours</th>
+                            <th>From</th>
+                            <th>To</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for volunteer_hour in volunteer_hours %}
+                            <tr>
+                                <td>{{ volunteer_hour.organization.name }}</td>
+                                <td>{{ volunteer_hour.hours }}</td>
+                                <td>{{ volunteer_hour.date_from|date:"F j, Y, g:i a" }}</td>
+                                <td>{{ volunteer_hour.date_to|date:"F j, Y, g:i a" }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No verified volunteer hours recorded yet.</p>
+            {% endif %}
+        </section>
+
+        <section class="events-info">
+            <h2>Total Donations: Ksh {{ total_donated_amount }}</h2>
+            {% if donations %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Donation Cause</th>
+                            <th>Amount (Ksh)</th>
+                            <th>Latest Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for donation in donations %}
+                        <tr>
+                            <td>{{ donation.donation__name }}</td>
+                            <td>{{ donation.total_amount }}</td>
+                            <td>{{ donation.latest_date|date:"F j, Y, g:i a" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No donations made yet.</p>
+            {% endif %}
+        </section>
     </div>
 </body>
 </html>

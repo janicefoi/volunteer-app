@@ -1,133 +1,61 @@
+/* profile.css */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-    color: #333;
-  }
-  .header {
-    background-color: #2b5744;
-    color: white;
-    padding: 15px 0;
-    text-align: center;
-  }
-  .header a {
-    color: white;
-    text-decoration: none;
-    padding: 0 20px;
-    font-size: 16px;
-  }
-  #header{
-    display: flex;
-    align-content: center;
-    justify-content: space-between;
-    padding: 20px 80px;
-    background-color: #265247;
-    box-shadow: 0 5px 15px rgb(0, 0, 0, 0.06);
-    z-index: 999;
-    position: sticky;
-    top: 0;
-    left: 0;
-    }
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
 
-    #navbar{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    }
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-    #navbar li{
-    list-style: none;
-    margin-top: 30px;
-    padding: 0 20px;
-    position: relative;
-    }
+.profile-header {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
 
-    #navbar li a{
-    text-decoration: none;
-    font-size:  16px;
-    font-weight: 600;
-    color: white;
-    transition: 0.3s ease;
-    }
+h2 {
+  color: #4CAF50;
+}
 
-    #navbar li a:hover,
-    #navbar li a.active{
-    color: #64d6ba;
-    }
-
-    #navbar li a.active::after,
-    #navbar li a:hover::after{
-    content: "";
-    width: 30%;
-    height: 2px;
-    background-color: #64d6ba;
-    position: absolute;
-    bottom: -4px;
-    left: 20px;
-    }
-.content {
-max-width: 800px;
-margin: 30px auto;
-background-color: white;
-padding: 30px;
-border-radius: 8px;
-box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
-h1 {
-text-align: center;
-margin-bottom: 30px;
-color: #2b5744;
-}
-.profile-section {
-display: flex;
-align-items: center;
-margin-bottom: 30px;
-}
-.profile-image {
-width: 180px;
-height: 180px;
-border-radius: 50%;
-margin-right: 30px;
-object-fit: cover;
-border: 4px solid #2b5744;
-}
-.profile-info {
-flex-grow: 1;
-}
-.profile-name {
-font-size: 28px;
-font-weight: bold;
-margin-bottom: 5px;
-}
-.profile-handle {
-color: #666;
-font-size: 18px;
-}
 table {
-width: 100%;
-border-collapse: separate;
-border-spacing: 0;
-border: 1px solid #ddd;
-border-radius: 8px;
-overflow: hidden;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
+
 th, td {
-border: 1px solid #ddd;
-padding: 12px;
-text-align: left;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
+
+thead {
+  background-color: #4CAF50;
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
 th {
-background-color: #f2f2f2;
-font-weight: bold;
+  background-color: #4CAF50;
+  color: white;
 }
-tr:nth-child(even) {
-background-color: #f9f9f9;
-}
-.table-header {
-background-color: #2b5744;
-color: white;
-font-size: 18px;
-text-align: center;
-padding: 15px;
+
+td {
+  color: #555;
 }

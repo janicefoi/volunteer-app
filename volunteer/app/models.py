@@ -77,9 +77,11 @@ class VolunteerHours(models.Model):
     date_from = models.DateTimeField()
     date_to = models.DateTimeField()
     hours = models.DecimalField(max_digits=5, decimal_places=2)
+    verified = models.BooleanField(default=False)  # New field to track verification
 
     def __str__(self):
         return f"{self.user.username} volunteering at {self.organization.name}"
+
 
 
 class VolunteeringRecord(models.Model):
@@ -95,7 +97,7 @@ class VolunteeringRecord(models.Model):
 class UserDonation(models.Model):
     user = models.ForeignKey(User, related_name='donations', on_delete=models.CASCADE)
     donation = models.ForeignKey(Donation, related_name='user_donations', on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    amount = models.PositiveIntegerField(null=True, blank=True)
     date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
