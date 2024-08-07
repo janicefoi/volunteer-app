@@ -89,24 +89,28 @@
     </section>
 
     <section id="events" class="section-p1">
-        <div class="event-container">
-            {% for event in events %}
-            <div class="event" onclick="showSignupModal('{{ event.id }}')">
-                <h4>{{ event.name }}</h4>
-                <img src="{{ event.image.url }}" alt="{{ event.name }}">
-                <div class="event-desc">
-                    <h5>Location: {{ event.location }}</h5>
-                    <h5>Date: {{ event.date_time|date:"j F Y" }}</h5>
-                    <h5>Time: {{ event.date_time|time:"h:i A" }}</h5>
-                    {% if event.organization %}
-                    <h5>Organization: {{ event.organization.name }}</h5>
-                    {% endif %}
-                    <p>{{ event.description }}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
+      <div class="event-container">
+          {% for event in events %}
+          <div class="event" onclick="showSignupModal('{{ event.id }}')">
+              <h4>{{ event.name }}</h4>
+              {% if event.image %}
+                  <img src="{{ event.image.url }}" alt="{{ event.name }}">
+              {% else %}
+                  <img src="/path/to/default/image.jpg" alt="default">
+              {% endif %}
+              <div class="event-desc">
+                  <h5>Location: {{ event.location }}</h5>
+                  <h5>Date: {{ event.date_time|date:"j F Y" }}</h5>
+                  <h5>Time: {{ event.date_time|time:"h:i A" }}</h5>
+                  {% if event.organization %}
+                  <h5>Organization: {{ event.organization.name }}</h5>
+                  {% endif %}
+                  <p>{{ event.description }}</p>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+  </section>  
     <!-- Signup modal -->
     <div id="signupModal" class="modal">
         <div class="modal-content">

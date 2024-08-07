@@ -46,18 +46,26 @@ function submitDonation() {
     })
     .then(response => response.json())
     .then(data => {
-        if (data.status === 'success') {
-            document.getElementById('successMessage').style.display = 'block';
-        } else {
-            document.getElementById('errorMessage').innerText = data.message || 'Payment failed. Please try again.';
-            document.getElementById('errorMessage').style.display = 'block';
-        }
+        // Delay before showing the message
+        setTimeout(() => {
+            if (data.status === 'success') {
+                document.getElementById('successMessage').style.display = 'block';
+            } else {
+                document.getElementById('errorMessage').innerText = data.message || 'Payment failed. Please try again.';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        }, 30000); // 30000 milliseconds = 30 seconds
     })
     .catch(error => {
-        document.getElementById('errorMessage').innerText = 'An error occurred. Please try again.';
-        document.getElementById('errorMessage').style.display = 'block';
+        // Delay before showing the error message
+        setTimeout(() => {
+            document.getElementById('errorMessage').innerText = 'An error occurred. Please try again.';
+            document.getElementById('errorMessage').style.display = 'block';
+        }, 30000); // 30000 milliseconds = 30 seconds
     });
 }
+
+
 
 // Utility function to get the CSRF token
 function getCookie(name) {

@@ -199,6 +199,9 @@ def initiate_mpesa_payment(request):
         donation_id = json_data.get('donation_id')
         donation = get_object_or_404(Donation, id=donation_id)
         
+        # Ensure amount is a valid integer
+        amount = int(amount)
+        
         mpesa_api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
         business_short_code = "174379"
         lipa_na_mpesa_online_passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
@@ -212,7 +215,7 @@ def initiate_mpesa_payment(request):
             "Password": password,
             "Timestamp": timestamp,
             "TransactionType": "CustomerPayBillOnline",
-            "Amount": int(amount),
+            "Amount": amount,
             "PartyA": int(phone_number),
             "PartyB": int(business_short_code),
             "PhoneNumber": int(phone_number),
@@ -223,7 +226,7 @@ def initiate_mpesa_payment(request):
 
         headers = {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer 3t3io0jQbtZjAPz3eSjGYffgYulY'
+            'Authorization':  'Bearer H2D4EZA3VpO8BeJ11Q3Kqe6D3GLq'
         }
 
         print("Mpesa Request Body:", json.dumps(payload))
@@ -241,15 +244,21 @@ def initiate_mpesa_payment(request):
                 amount=amount,
                 date=datetime.datetime.now()
             )
-            donation.funds_raised += amount
-            donation.supporters += 1
+            
+            # Update donation fields
+            donation.funds_raised = (donation.funds_raised or 0) + amount
+            donation.supporters = (donation.supporters or 0) + 1
             donation.save()
+            
             return JsonResponse({'status': 'success', 'message': 'Please complete the payment on your phone.'})
         else:
             return JsonResponse({'status': 'error', 'message': response_data.get('errorMessage', 'Payment initiation failed.')})
 
     except Exception as e:
         return JsonResponse({"error": str(e)})
+
+
+
 
 
 @login_required

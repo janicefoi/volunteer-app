@@ -14,7 +14,7 @@ body, html {
 
 .left-panel {
     flex: 1;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('image.png');
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/static/img/image.png');
     background-size: cover;
     background-position: center;
     color: white;
