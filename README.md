@@ -141,6 +141,7 @@ To run the tests for the application:
 python manage.py test
 
 ```
+## Pictures
 ![WhatsApp Image 2024-08-08 at 16 48 22_94950c8b](https://github.com/user-attachments/assets/67f8dc35-4689-475e-9031-9664687ab6a7)
 ![WhatsApp Image 2024-08-08 at 16 48 21_e3df4444](https://github.com/user-attachments/assets/23714133-9da8-46fc-b7c5-19aebacd8e76)
 ![WhatsApp Image 2024-08-08 at 16 48 19_a44e6e1e](https://github.com/user-attachments/assets/8bc071b3-529e-4f69-8155-5e1bc343d4fe)
